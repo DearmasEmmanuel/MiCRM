@@ -11,11 +11,25 @@ VALUES
     ('Cliente9', 'Dirección9', 'Contacto9'),
     ('Cliente10', 'Dirección10', 'Contacto10');
 go
-INSERT INTO Productos (Nombre, Descripcion, PrecioCompra, PrecioVenta, PorcentajeGanancia, StockActual, StockMinimo)
+INSERT INTO Productos (Nombre, Descripcion, PrecioCompra, PrecioVenta, PorcentajeGanancia, StockActual, StockMinimo, MarcaID, CategoriaID)
 VALUES
-    ('Laptop HP Pavilion', 'Laptop de 15 pulgadas con procesador Intel Core i5', 600.00, 800.00, 33.33, 50, 10),
-    ('Smartphone Samsung Galaxy S21', 'Teléfono inteligente con pantalla AMOLED de 6.2 pulgadas', 700.00, 900.00, 28.57, 40, 8),
-    ('Impresora Epson EcoTank', 'Impresora multifuncional de inyección de tinta con tanques de tinta recargables', 250.00, 350.00, 40.00, 30, 5);
+    ('Laptop HP Pavilion', 'Laptop de 15 pulgadas con procesador Intel Core i5', 600.00, 800.00, 33.33, 50, 10, 1, 3),
+    ('Smartphone Samsung Galaxy S21', 'Teléfono inteligente con pantalla AMOLED de 6.2 pulgadas', 700.00, 900.00, 28.57, 40, 8, 2, 1),
+    ('Impresora Epson EcoTank', 'Impresora multifuncional de inyección de tinta con tanques de tinta recargables', 250.00, 350.00, 40.00, 30, 5, 3, 2);
+
+go
+INSERT INTO Marcas (Nombre)
+VALUES
+    ('HP'),
+    ('SAMSUNG'),
+    ('EPSON');
+
+go
+INSERT INTO Categorias (Nombre)
+VALUES
+    ('TELEFONIA'),
+    ('IMPRESORAS'),
+    ('ELECTRODOMESTICOS');
 
 go
 
@@ -70,9 +84,5 @@ VALUES
     (2, 3, 4, 350.00);  -- Venta 2, Producto 3, 4 unidades a $350.00 cada una
 
 
-
-
-
-
-	select * from Clientes
-	select * from Productos
+select * from Cliente
+select * from Productos

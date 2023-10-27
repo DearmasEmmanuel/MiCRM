@@ -13,5 +13,23 @@ namespace MiCRM
         {
 
         }
+        protected void btnBuscar_Click(object sender, EventArgs e)
+        {
+
+        }
+        protected void onclick_home(object sender, EventArgs e)
+        {
+            Response.Redirect("Default.aspx", false);
+        }
+
+        protected void LinkButton1_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Default.aspx", false);
+        }
+
+        protected void LbCarrito_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Default.aspx", false);
+        }
     }
 }
