@@ -16,9 +16,8 @@ namespace Dominio
         public decimal PorcentajeGanancia { get; set; }
         public int StockActual { get; set; }
         public int StockMinimo { get; set; }
-        public int MarcaID { get; set; }
-        public int CategoriaID { get; set; }
-
-       
+        public Marca Marca { get; set; }
+        public Categoria Categoria { get; set; }
+   
     }
 }

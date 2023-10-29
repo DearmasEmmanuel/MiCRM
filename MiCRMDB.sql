@@ -1,7 +1,7 @@
-
 CREATE DATABASE CRMDB;
 
-use CRMDB
+use CRMDB;
+
 CREATE TABLE Clientes (
     ClienteID INT IDENTITY(1,1) PRIMARY KEY,
     Nombre VARCHAR(255),
@@ -84,12 +84,10 @@ CREATE TABLE Usuarios (
     Rol VARCHAR(255)
 );
 
-
 CREATE TABLE Marcas (
     MarcaID INT PRIMARY KEY IDENTITY(1,1),
     Nombre VARCHAR(255)
 );
-
 
 CREATE TABLE Categorias (
     CategoriaID INT PRIMARY KEY IDENTITY(1,1),
@@ -99,7 +97,6 @@ CREATE TABLE Categorias (
 ALTER TABLE Productos
 ADD MarcaID INT,
     CategoriaID INT;
-
 
 ALTER TABLE Productos
 ADD CONSTRAINT FK_Marca
