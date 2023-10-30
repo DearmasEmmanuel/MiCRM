@@ -11,6 +11,16 @@ namespace MiCRM
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["NombreUsuario"] != null)
+            {
+                lblUsuario.Text = Session["NombreUsuario"].ToString();
+                
+                
+            }
+            else
+            {
+                
+            }
 
         }
     }

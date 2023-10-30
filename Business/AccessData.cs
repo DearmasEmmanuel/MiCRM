@@ -80,24 +80,24 @@ namespace Business
         //    }
 
         //}
-        //public int ExecuteNonQuery()
-        //{
-        //    try
-        //    {
-        //        this.command.Connection = this.connection;
-        //        this.connection.Open();
-        //        return this.command.ExecuteNonQuery();
-        //    }
-        //    catch (Exception)
-        //    {
-        //        return -1;
-        //    }
-        //}
+        public int ExecuteNonQuery()
+        {
+            try
+            {
+                this.command.Connection = this.connection;
+               this.connection.Open();
+               return this.command.ExecuteNonQuery();
+            }
+           catch (Exception)
+            {
+                return -1;
+           }
+        }
 
-        //public void setearParametros(string nombre, object valor)
-        //{
-        //    command.Parameters.AddWithValue(nombre, valor);
-        //}
+        public void setearParametros(string nombre, object valor)
+        {
+            command.Parameters.AddWithValue(nombre, valor);
+        }
         public void Close()
         {
             if (this.reader != null)
@@ -110,11 +110,11 @@ namespace Business
             }
         }
 
-        //public void AddParameter(string parameterName, object value)
-        //{
-        //    var parameter = new SqlParameter(parameterName, value);
-        //    this.command.Parameters.Add(parameter);
-        //}
+        public void AddParameter(string parameterName, object value)
+        {
+            var parameter = new SqlParameter(parameterName, value);
+           this.command.Parameters.Add(parameter);
+        }
 
     }
 }
