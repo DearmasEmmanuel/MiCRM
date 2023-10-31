@@ -13,7 +13,9 @@ namespace MiCRM
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            Session["UsuarioID"] = null;
+            Session["NombreUsuario"] = null;
+            Session["Rol"] = null;
         }
 
         protected void Button1_Click(object sender, EventArgs e)
@@ -23,12 +25,10 @@ namespace MiCRM
 
             List<Usuario> usuarios = LoginBusiness.List();
 
-            Usuario usuarioAutenticado = usuarios.FirstOrDefault(u =>
-                u.NombreUsuario == nombreUsuario && u.Contraseña == contraseña);
+            Usuario usuarioAutenticado = usuarios.FirstOrDefault(u => u.NombreUsuario == nombreUsuario && u.Contraseña == contraseña);
 
             if (usuarioAutenticado != null)
-            {
-                
+            {               
                 Session["UsuarioID"] = usuarioAutenticado.UsuarioID;
                 Session["NombreUsuario"] = usuarioAutenticado.NombreUsuario;
                 Session["Rol"] = usuarioAutenticado.Rol;
@@ -46,8 +46,7 @@ namespace MiCRM
                 }
             }
             else
-            {
-                
+            {            
                 lblMensajeError.Text = "Credenciales incorrectas. Intente de nuevo.";
             }
         }

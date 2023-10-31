@@ -12,11 +12,15 @@ namespace MiCRM
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            ProductoBusiness productoBusiness = new ProductoBusiness();
-            dgvProductos.DataSource = productoBusiness.List();
-            dgvProductos.DataBind();
+            if (!(Session["Rol"] is null))
+            {       
+                ProductoBusiness productoBusiness = new ProductoBusiness();
+                dgvProductos.DataSource = productoBusiness.List();
+                dgvProductos.DataBind();
 
-            //dgvProductos.Columns[0].Visible = false;
+                //dgvProductos.Columns[0].Visible = false;
+            }
+
 
         }
     }

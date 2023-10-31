@@ -44,10 +44,15 @@
     <form id="form1" runat="server">
         <div>
             <div class="sidebar">
-                <a href="admin.aspx"><i class="fa fa-dashboard"></i>Dashboard</a>
-                <a href="adminProductoNuevo.aspx"><i class="fa fa-users"></i>Nuevo Producto</a>
-                <a href="#"><i class="fa fa-cogs"></i>Configuración</a>
-                <a href="Default.aspx"><i class="fa fa-sign-out"></i>Cerrar Sesión</a>
+                <a href="admin.aspx"><i class="fa fa-dashboard"></i> Dashboard</a>
+                <a href="#"><i class="fa fa-shopping-cart"></i> Compras</a>
+                <a href="#"><i class="fa fa-truck"></i> Ventas</a>
+                <a href="#"><i class="fa fa-users"></i> Clientes</a>
+                <a href="#"><i class="fa fa-users"></i> Proveedores</a>
+                <a href="#"><i class="fa fa-users"></i> Vendedores</a>
+                <a href="#"><i class="fa fa-industry"></i> Inventario</a>
+                <a href="#"><i class="fa fa-cogs"></i> Configuración</a>
+                <a href="Login.aspx"><i class="fa fa-sign-out"></i> Cerrar Sesión</a>
             </div>
 
             <!-- Contenido principal -->
