@@ -72,6 +72,7 @@
     <Content Include="Default.aspx" />
     <Content Include="ModificarCliente.aspx" />
     <Content Include="Producto.aspx" />
+    <Content Include="Venta.aspx" />
     <Content Include="Web.config" />
     <Content Include="Login.aspx" />
     <Content Include="Vendedor.aspx" />
@@ -154,6 +155,13 @@
     </Compile>
     <Compile Include="Vendedor.aspx.designer.cs">
       <DependentUpon>Vendedor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Venta.aspx.cs">
+      <DependentUpon>Venta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Venta.aspx.designer.cs">
+      <DependentUpon>Venta.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

@@ -29,7 +29,7 @@
                 </div>
             </div>
         </div>
-        <div class="form-group">
+  <%--      <div class="form-group">
             <label for="txtClienteNombre">Nombre del Cliente:</label>
             <asp:TextBox ID="txtClienteNombre" runat="server" CssClass="form-control"></asp:TextBox>
         </div>
@@ -47,7 +47,7 @@
         <!-- Agregar otros campos de compra (productos, cantidad, etc.) -->
 
         <!-- Botón para realizar la compra -->
-        <asp:Button ID="btnRealizarCompra" runat="server" Text="Realizar Compra" CssClass="btn btn-success" OnClick="btnRealizarCompra_Click" />
+        <asp:Button ID="btnRealizarCompra" runat="server" Text="Realizar Compra" CssClass="btn btn-success" OnClick="btnRealizarCompra_Click" />--%>
 
         <hr>
 

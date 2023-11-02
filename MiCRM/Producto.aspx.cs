@@ -14,8 +14,8 @@ namespace MiCRM
         {
             if (!(Session["Rol"] is null))
             {       
-                ProductoBusiness productoBusiness = new ProductoBusiness();
-                dgvProductos.DataSource = productoBusiness.List();
+                
+                dgvProductos.DataSource = ProductoBusiness.List();
                 dgvProductos.DataBind();
 
                 //dgvProductos.Columns[0].Visible = false;

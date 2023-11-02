@@ -57,7 +57,7 @@ namespace MiCRM
             ClienteBusiness.EditarCliente(clienteModificado);
 
             // Redirige a la página de confirmación o a la lista de clientes
-            Response.Redirect("Clientes.aspx");
+            Response.Redirect("Vendedor.aspx");
         }
     }
 }

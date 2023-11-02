@@ -24,12 +24,12 @@ namespace MiCRM
                 {
 
                 }
-                ProductoBusiness productoBusiness = new ProductoBusiness();
-                gvStock.DataSource = productoBusiness.List();
+                
+                gvStock.DataSource = ProductoBusiness.List();
                 gvStock.DataBind();
-                ddlClientes.DataSource = ClienteBusiness.List();
-                ddlClientes.DataTextField = "Nombre";
-                ddlClientes.DataBind();
+                //ddlClientes.DataSource = ClienteBusiness.List();
+                //ddlClientes.DataTextField = "Nombre";
+                //ddlClientes.DataBind();
             }
         }
 

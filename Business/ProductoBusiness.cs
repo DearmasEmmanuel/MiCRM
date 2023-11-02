@@ -9,7 +9,7 @@ namespace Business
 {
     public class ProductoBusiness
     {
-        public List<Producto> List()
+        public static List<Producto> List()
         {
             List<Producto> lista = new List<Producto>();
             AccessData data = new AccessData();

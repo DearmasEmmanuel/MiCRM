@@ -6,7 +6,8 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container mt-5">
  <h1>Modificar Cliente</h1>
-    <asp:DropDownList ID="ddlClientes" runat="server" CssClass="form-control"></asp:DropDownList>
+    <asp:DropDownList ID="ddlClientes" runat="server" CssClass="form-control" AutoPostBack="True" OnSelectedIndexChanged="ddlClientes_SelectedIndexChanged"></asp:DropDownList>
+
     <div class="form-group">
         <label for="txtNombre">Nombre:</label>
         <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" />
