@@ -107,6 +107,45 @@ namespace Business
                 data.Close();
             }
         }
+
+        public static Cliente ObtenerClientePorID(int clienteID)
+        {
+            AccessData data = new AccessData();
+            try
+            {
+                data.SetQuery("SELECT ClienteID, Nombre, Direccion, Contacto FROM Clientes WHERE ClienteID = @ClienteID");
+                data.AddParameter("@ClienteID", clienteID);
+                data.ExecuteQuery();
+
+                if (data.Reader.Read())
+                {
+                    Cliente cliente = new Cliente
+                    {
+                        ClienteID = (int)data.Reader["ClienteID"],
+                        Nombre = (string)data.Reader["Nombre"],
+                        Direccion = (string)data.Reader["Direccion"],
+                        Contacto = (string)data.Reader["Contacto"]
+                    };
+
+                    return cliente;
+                }
+                else
+                {
+                    return null; // El cliente no se encontró en la base de datos
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                data.Close();
+            }
+        }
+
+
+
     }
 }
 

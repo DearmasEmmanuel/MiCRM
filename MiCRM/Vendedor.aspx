@@ -12,6 +12,7 @@
                     </div>
                     <div class="card-body">
                         <!-- Contenido del perfil del vendedor aquí -->
+                       
                     </div>
                 </div>
             </div>

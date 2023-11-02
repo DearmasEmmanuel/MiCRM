@@ -1,9 +1,6 @@
-﻿using System;
+﻿using Dominio;
+using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
-using Dominio;
 
 namespace Business
 {
@@ -15,7 +12,7 @@ namespace Business
             AccessData data = new AccessData();
             try
             {
-                data.SetQuery(@"SELECT MarcaID, Nombre FROM MARCAS");
+                data.SetQuery(@"SELECT MarcaID, Nombre FROM Marcas");
                 data.ExecuteQuery();
 
                 while (data.Reader.Read())
@@ -32,7 +29,6 @@ namespace Business
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
             finally
@@ -40,107 +36,71 @@ namespace Business
                 data.Close();
             }
         }
-        //public static int Add(Marca marca)
-        //{
-        //    AccessData data = new AccessData();
-        //    try
-        //    {
-        //        string query =
-        //            @"IF NOT EXISTS (SELECT 1 FROM MARCAS WHERE Descripcion = @Description)
-        //            BEGIN
-        //                INSERT INTO MARCAS (Descripcion) VALUES (@Description)
-        //            END";
 
-        //        List<SqlParameter> parameters = new List<SqlParameter>() {
-        //            new SqlParameter("@Description", marca.Descripcion)
-        //        };
+        public static void AgregarMarca(Marca marca)
+        {
+            AccessData data = new AccessData();
+            try
+            {
+                // Realiza la inserción de la nueva marca en la base de datos
+                string query = "INSERT INTO Marcas (Nombre) VALUES (@Nombre)";
+                data.SetQuery(query);
+                data.AddParameter("@Nombre", marca.Nombre);
+                data.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                data.Close();
+            }
+        }
 
-        //        data.SetQuery(query, parameters);
+        public static void EditarMarca(Marca marca)
+        {
+            AccessData data = new AccessData();
+            try
+            {
+                // Realiza la actualización de la marca en la base de datos
+                string query = "UPDATE Marcas SET Nombre = @Nombre WHERE MarcaID = @MarcaID";
+                data.SetQuery(query);
+                data.AddParameter("@MarcaID", marca.MarcaID);
+                data.AddParameter("@Nombre", marca.Nombre);
+                data.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                data.Close();
+            }
+        }
 
-        //        if (data.ExecuteNonQuery() > 0)
-        //        {
-        //            return data.GetLastId("MARCAS");
-        //        }
-        //        else
-        //        {
-        //            return -1;
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return -1;
-        //        throw ex;
-        //    }
-        //    finally
-        //    {
-        //        data.Close();
-        //    }
-        //}
-        //public static int Remove(Marca marca)
-        //{
-        //    AccessData data = new AccessData();
-        //    try
-        //    {
-        //        string query = "DELETE FROM MARCAS WHERE id = @Id";
-        //        List<SqlParameter> parameters = new List<SqlParameter>() {
-        //            new SqlParameter("@Id", marca.Id)
-        //        };
-        //        data.SetQuery(query, parameters);
-
-        //        return data.ExecuteNonQuery();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return -1;
-        //        throw ex;
-        //    }
-        //    finally
-        //    {
-        //        data.Close();
-        //    }
-        //}
-        //public static int Update(Marca marca)
-        //{
-        //    AccessData data = new AccessData();
-        //    try
-        //    {
-        //        string query = "UPDATE MARCAS SET Descripcion = @Description WHERE id = @Id";
-        //        List<SqlParameter> parameters = new List<SqlParameter>() {
-        //            new SqlParameter("@Description", marca.Descripcion),
-        //            new SqlParameter("@Id", marca.Id)
-        //        };
-        //        data.SetQuery(query, parameters);
-
-        //        return data.ExecuteNonQuery();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return -1;
-        //        throw ex;
-        //    }
-        //    finally
-        //    {
-        //        data.Close();
-        //    }
-        //}
-        //public static int GetMaxID()
-        //{
-        //    AccessData data = new AccessData();
-        //    try
-        //    {
-        //        data.SetQuery(@"SELECT MAX(Id) FROM MARCAS");
-        //        data.ExecuteQuery();
-        //        data.Reader.Read();
-        //        return (int)data.Reader.GetInt32(0);
-        //    }
-        //    catch (Exception)
-        //    {
-        //        return -1;
-        //    }
-        //    finally
-        //    {
-        //        data.Close();
-        //    }
-        //}
+        public static void EliminarMarca(int marcaID)
+        {
+            AccessData data = new AccessData();
+            try
+            {
+                // Realiza la eliminación de la marca en la base de datos
+                string query = "DELETE FROM Marcas WHERE MarcaID = @MarcaID";
+                data.SetQuery(query);
+                data.AddParameter("@MarcaID", marcaID);
+                data.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                data.Close();
+            }
+        }
     }
 }
+
+

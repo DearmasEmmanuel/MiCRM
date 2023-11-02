@@ -5,9 +5,7 @@ using System.Linq;
 using Dominio;
 
 
-
 namespace Business
-
 {
     public class ProductoBusiness
     {
@@ -42,7 +40,6 @@ namespace Business
                             CategoriaID = (int)data.Reader["CategoriaID"],
                             Nombre = data.Reader["CategoriaNombre"].ToString()
                         },
-
                     };
                     lista.Add(aux);
                 }
@@ -54,236 +51,84 @@ namespace Business
             return lista;
         }
 
-        //        public int Agregar(Producto articulo)
-        //        {
-        //            AccessData data = new AccessData();
-        //            List<SqlParameter> parameters = new List<SqlParameter>();
-        //            try
-        //            {
-        //                string columns, values;
-        //                columns = values = "";
-        //                if (articulo.Codigo != null && articulo.Codigo != "")
-        //                {
-        //                    columns += "Codigo,";
-        //                    values += $"@Codigo,";
-        //                    parameters.Add(new SqlParameter("@Codigo", articulo.Codigo));
-        //                }
-        //                if (articulo.Nombre != null && articulo.Nombre != "")
-        //                {
-        //                    columns += "Nombre,";
-        //                    values += $"@Nombre,";
-        //                    parameters.Add(new SqlParameter("@Nombre", articulo.Nombre));
-        //                }
-        //                if (articulo.Descripcion != null && articulo.Descripcion != "")
-        //                {
-        //                    columns += "Descripcion,";
-        //                    values += $"@Descripcion,";
-        //                    parameters.Add(new SqlParameter("@Descripcion", articulo.Descripcion));
-        //                }
-        //                if (articulo.Precio != 0)
-        //                {
-        //                    columns += "Precio,";
-        //                    values += $"@Precio,";
-        //                    parameters.Add(new SqlParameter("@Precio", articulo.Precio));
-        //                }
-        //                string query = $@"
-        //                    DECLARE @IdGenerado int
+        public static void AgregarProducto(Producto producto)
+        {
+            AccessData data = new AccessData();
+            try
+            {
+                // Realiza la inserción del nuevo producto en la base de datos
+                string query = "INSERT INTO Productos (Nombre, Descripcion, PrecioCompra, PrecioVenta, PorcentajeGanancia, StockActual, StockMinimo, MarcaID, CategoriaID) VALUES (@Nombre, @Descripcion, @PrecioCompra, @PrecioVenta, @PorcentajeGanancia, @StockActual, @StockMinimo, @MarcaID, @CategoriaID)";
+                data.SetQuery(query);
+                data.AddParameter("@Nombre", producto.Nombre);
+                data.AddParameter("@Descripcion", producto.Descripcion);
+                data.AddParameter("@PrecioCompra", producto.PrecioCompra);
+                data.AddParameter("@PrecioVenta", producto.PrecioVenta);
+                data.AddParameter("@PorcentajeGanancia", producto.PorcentajeGanancia);
+                data.AddParameter("@StockActual", producto.StockActual);
+                data.AddParameter("@StockMinimo", producto.StockMinimo);
+                data.AddParameter("@MarcaID", producto.Marca.MarcaID);
+                data.AddParameter("@CategoriaID", producto.Categoria.CategoriaID);
+                data.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                data.Close();
+            }
+        }
 
-        //                    INSERT INTO ARTICULOS 
-        //                        ({columns}IdMarca,IdCategoria)
-        //                    VALUES
-        //                        ({values}@BrandId,@CategoryId)
-        //                    SET @IdGenerado = SCOPE_IDENTITY()
-        //                    ";
+        public static void EditarProducto(Producto producto)
+        {
+            AccessData data = new AccessData();
+            try
+            {
+                // Realiza la actualización del producto en la base de datos
+                string query = "UPDATE Productos SET Nombre = @Nombre, Descripcion = @Descripcion, PrecioCompra = @PrecioCompra, PrecioVenta = @PrecioVenta, PorcentajeGanancia = @PorcentajeGanancia, StockActual = @StockActual, StockMinimo = @StockMinimo, MarcaID = @MarcaID, CategoriaID = @CategoriaID WHERE ProductoID = @ProductoID";
+                data.SetQuery(query);
+                data.AddParameter("@ProductoID", producto.ProductoID);
+                data.AddParameter("@Nombre", producto.Nombre);
+                data.AddParameter("@Descripcion", producto.Descripcion);
+                data.AddParameter("@PrecioCompra", producto.PrecioCompra);
+                data.AddParameter("@PrecioVenta", producto.PrecioVenta);
+                data.AddParameter("@PorcentajeGanancia", producto.PorcentajeGanancia);
+                data.AddParameter("@StockActual", producto.StockActual);
+                data.AddParameter("@StockMinimo", producto.StockMinimo);
+                data.AddParameter("@MarcaID", producto.Marca.MarcaID);
+                data.AddParameter("@CategoriaID", producto.Categoria.CategoriaID);
+                data.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                data.Close();
+            }
+        }
 
-        //                parameters.Add(new SqlParameter("@BrandId", articulo.Marca.Id));
-        //                parameters.Add(new SqlParameter("@CategoryId", articulo.Categoria.Id));
-
-        //                int imagesCount = articulo.Imagen is null ? 0 : articulo.Imagen.Count;
-        //                if (imagesCount > 0)
-        //                {
-        //                    query += @"
-        //                        INSERT INTO IMAGENES
-        //                            (IdArticulo,ImagenUrl)
-        //                        VALUES 
-        //                        ";
-        //                    for (int i = 0; i < imagesCount; i++)
-        //                    {
-        //                        query += $" (@IdGenerado, @ImagenUrl{i}),";
-        //                        parameters.Add(new SqlParameter($"@ImagenUrl{i}", articulo.Imagen[i].ImagenUrl));
-        //                    }
-        //                    query = query.Remove(query.Length - 1);
-        //                }
-
-        //                data.SetQuery(query, parameters);
-
-        //                return data.ExecuteNonQuery();
-        //            }
-        //            catch (Exception ex)
-        //            {
-        //                throw ex;
-        //            }
-        //            finally
-        //            {
-        //                data.Close();
-        //            }
-        //        }
-        //        public int Modificar(Producto oldItem, Producto updatedItem)
-        //        {
-        //            AccessData data = new AccessData();
-        //            List<SqlParameter> parameters = new List<SqlParameter>();
-        //            try
-        //            {
-        //                string query = "UPDATE ARTICULOS SET";
-        //                parameters.Add(new SqlParameter("@Id", oldItem.Id));
-        //                if (oldItem.Nombre != updatedItem.Nombre)
-        //                {
-        //                    query += " Nombre = @Name,";
-        //                    parameters.Add(new SqlParameter("@Name", updatedItem.Nombre));
-        //                }
-        //                if (oldItem.Descripcion != updatedItem.Descripcion)
-        //                {
-        //                    query += " Descripcion = @Description,";
-        //                    parameters.Add(new SqlParameter("@Description", updatedItem.Descripcion));
-        //                }
-        //                if (oldItem.Codigo != updatedItem.Codigo)
-        //                {
-        //                    query += " Codigo = @Code,";
-        //                    parameters.Add(new SqlParameter("@Code", updatedItem.Codigo));
-        //                }
-        //                if (oldItem.Categoria.Id != updatedItem.Categoria.Id)
-        //                {
-        //                    query += " IdCategoria = @Category,";
-        //                    parameters.Add(new SqlParameter("@Category", updatedItem.Categoria.Id));
-        //                }
-        //                if (oldItem.Marca.Id != updatedItem.Marca.Id)
-        //                {
-        //                    query += " IdMarca = @Brand,";
-        //                    parameters.Add(new SqlParameter("@Brand", updatedItem.Marca.Id));
-        //                }
-        //                if (oldItem.Precio != updatedItem.Precio)
-        //                {
-        //                    query += " Precio = @Price,";
-        //                    parameters.Add(new SqlParameter("@Price", updatedItem.Precio));
-        //                }
-        //                int imageUpdate = ImagenBusiness.UpdateList(oldItem.Imagen, updatedItem.Imagen);
-        //                Console.WriteLine(imageUpdate);
-        //                if (query[query.Length - 1] == ',')
-        //                {
-        //                    query = query.Remove(query.Length - 1, 1);
-        //                }
-        //                else
-        //                {
-        //                    return -1;
-        //                }
-
-        //                query += " WHERE Id = @Id";
-
-        //                data.SetQuery(query, parameters);
-
-        //                return data.ExecuteNonQuery();
-        //            }
-        //            catch (Exception ex)
-        //            {
-        //                return -1;
-        //                throw ex;
-        //            }
-        //            finally
-        //            {
-        //                data.Close();
-        //            }
-        //        }
-
-        //        public int Eliminar(Producto articulo)
-        //        {
-        //            AccessData data = new AccessData();
-        //            List<SqlParameter> parameters = new List<SqlParameter>();
-        //            try
-        //            {
-        //                string query = "DELETE FROM ARTICULOS WHERE Id = @Id";
-        //                parameters.Add(new SqlParameter("@Id", articulo.Id));
-
-        //                if (articulo.Imagen.Count > 0)
-        //                {
-        //                    query += " DELETE FROM IMAGENES WHERE IdArticulo = @Id";
-        //                }
-
-        //                data.SetQuery(query, parameters);
-
-        //                return data.ExecuteNonQuery();
-        //            }
-        //            catch (Exception ex)
-        //            {
-        //                throw ex;
-        //            }
-        //            finally
-        //            {
-        //                data.Close();
-        //            }
-        //        }
-        //        public Producto ObtenerArticuloPorId(int id)
-        //        {
-        //            AccessData data = new AccessData();
-        //            try
-        //            {
-        //                data.SetQuery("SELECT a.Id, a.Codigo, a.Nombre, a.Descripcion, m.Id AS IdMarca, m.Descripcion AS Marca, c.Id as IdCategoria, c.Descripcion AS Categoria, i.Id AS IdImagen, i.IdArticulo, i.ImagenUrl AS Imagen, a.Precio FROM ARTICULOS a INNER JOIN MARCAS m ON a.IdMarca = m.Id INNER JOIN CATEGORIAS c ON a.IdCategoria = c.Id LEFT JOIN IMAGENES i ON a.Id = i.IdArticulo WHERE a.Id = @Id");
-        //                data.AddParameter("@Id", id); // Agrega el parámetro para el ID
-        //                data.ExecuteQuery();
-
-        //                if (data.Reader.Read())
-        //                {
-        //                    Producto articulo = new Producto
-        //                    {
-        //                        Id = (int)data.Reader["Id"],
-        //                        Codigo = data.Reader["Codigo"].ToString(),
-        //                        Nombre = data.Reader["Nombre"].ToString(),
-        //                        Descripcion = (string)data.Reader["Descripcion"],
-        //                        Marca = new Marca
-        //                        {
-        //                            Id = (int)data.Reader["IdMarca"],
-        //                            Descripcion = data.Reader["Marca"].ToString()
-        //                        },
-        //                        Categoria = new Categoria
-        //                        {
-        //                            Id = (int)data.Reader["IdCategoria"],
-        //                            Descripcion = data.Reader["Categoria"].ToString()
-        //                        },
-        //                        Precio = Convert.ToDecimal(data.Reader["Precio"]),
-        //                        Imagen = ImagenBusiness.List((int)data.Reader["Id"])
-        //                    };
-
-        //                    return articulo;
-        //                }
-        //            }
-        //            catch (Exception ex)
-        //            {
-        //                throw new Exception("Error al obtener el artículo por ID.", ex);
-        //            }
-        //            finally
-        //            {
-        //                data.Close();
-        //            }
-        //            return null; // Retorna null si no se encuentra el artículo
-        //        }
-
-        //        public List<Producto> Buscar(string terminoBusqueda)
-        //        {
-        //            // Realizar la búsqueda en la base de datos y obtener una lista de productos
-        //            List<Producto> resultados = BuscarProductosEnBaseDeDatos(terminoBusqueda);
-
-        //            return resultados;
-        //        }
-        //        private List<Producto> BuscarProductosEnBaseDeDatos(string terminoBusqueda)
-        //        {
-        //            AccessData data = new AccessData();
-        //            data.SetQuery("SELECT a.Id, a.Codigo, a.Nombre, a.Descripcion, m.Id AS IdMarca, m.Descripcion AS Marca, c.Id as IdCategoria, c.Descripcion AS Categoria, i.Id AS IdImagen, i.IdArticulo, i.ImagenUrl AS Imagen, a.Precio FROM ARTICULOS a INNER JOIN MARCAS m ON a.IdMarca = m.Id INNER JOIN CATEGORIAS c ON a.IdCategoria = c.Id LEFT JOIN IMAGENES i ON a.Id = i.IdArticulo WHERE a.Id = @Id");
-        //            data.AddParameter("@Nombre", terminoBusqueda); // Agrega el parámetro para el ID
-        //            data.ExecuteQuery();
-
-        //            List<Producto> resultados = new List<Producto>();
-        //            // Implementa la búsqueda y llena la lista de resultados
-
-        //            return resultados;
-        //        }
+        public static void EliminarProducto(int productoID)
+        {
+            AccessData data = new AccessData();
+            try
+            {
+                // Realiza la eliminación del producto en la base de datos
+                string query = "DELETE FROM Productos WHERE ProductoID = @ProductoID";
+                data.SetQuery(query);
+                data.AddParameter("@ProductoID", productoID);
+                data.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                data.Close();
+            }
+        }
     }
 }

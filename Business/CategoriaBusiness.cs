@@ -42,5 +42,47 @@ namespace Business
                 data.Close();
             }
         }
+        public static void EditarCategoria(Categoria categoria)
+        {
+            AccessData data = new AccessData();
+            try
+            {
+                // Realiza la actualización de la categoría en la base de datos
+                string query = "UPDATE Categorias SET Nombre = @Nombre WHERE CategoriaID = @CategoriaID";
+                data.SetQuery(query);
+                data.AddParameter("@CategoriaID", categoria.CategoriaID);
+                data.AddParameter("@Nombre", categoria.Nombre);
+                data.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                data.Close();
+            }
+        }
+
+        public static void EliminarCategoria(int categoriaID)
+        {
+            AccessData data = new AccessData();
+            try
+            {
+                // Realiza la eliminación de la categoría en la base de datos
+                string query = "DELETE FROM Categorias WHERE CategoriaID = @CategoriaID";
+                data.SetQuery(query);
+                data.AddParameter("@CategoriaID", categoriaID);
+                data.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                data.Close();
+            }
+        }
     }
 }
