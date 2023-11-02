@@ -18,6 +18,7 @@ namespace MiCRM
                 ddlClientes.DataValueField = "ClienteID"; // Necesitamos el valor del ClienteID
                 ddlClientes.DataBind();
             }
+            
         }
 
         protected void ddlClientes_SelectedIndexChanged(object sender, EventArgs e)
