@@ -11,7 +11,7 @@ namespace MiCRM
 {
 
 
-    public partial class ModificarCliente
+    public partial class ModificarClienteAdmin
     {
 
         /// <summary>

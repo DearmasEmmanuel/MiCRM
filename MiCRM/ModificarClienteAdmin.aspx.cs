@@ -2,11 +2,14 @@
 using Dominio;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 using System.Web.UI;
+using System.Web.UI.WebControls;
 
 namespace MiCRM
 {
-    public partial class ModificarCliente : Page
+    public partial class ModificarClienteAdmin : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -18,7 +21,7 @@ namespace MiCRM
                 ddlClientes.DataValueField = "ClienteID"; // Necesitamos el valor del ClienteID
                 ddlClientes.DataBind();
             }
-            
+
         }
 
         protected void ddlClientes_SelectedIndexChanged(object sender, EventArgs e)
@@ -57,9 +60,8 @@ namespace MiCRM
             ClienteBusiness.EditarCliente(clienteModificado);
 
             // Redirige a la página de confirmación o a la lista de clientes
-            Response.Redirect("Vendedor.aspx");
+            Response.Redirect("Admin.aspx");
         }
-
         protected void btnEliminarCliente_Click(object sender, EventArgs e)
         {
             // Obtén el ID del cliente seleccionado del DropDownList
@@ -69,7 +71,7 @@ namespace MiCRM
             ClienteBusiness.EliminarCliente(clienteID);
 
             // Puedes redirigir a una página de confirmación o a la lista de clientes
-            Response.Redirect("Vendedor.aspx");
+            Response.Redirect("Admin.aspx");
         }
     }
 }

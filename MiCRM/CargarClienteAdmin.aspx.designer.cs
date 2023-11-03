@@ -11,17 +11,8 @@ namespace MiCRM
 {
 
 
-    public partial class ModificarCliente
+    public partial class CargarClienteAdmin
     {
-
-        /// <summary>
-        /// Control ddlClientes.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlClientes;
 
         /// <summary>
         /// Control txtNombre.
@@ -51,21 +42,12 @@ namespace MiCRM
         protected global::System.Web.UI.WebControls.TextBox txtContacto;
 
         /// <summary>
-        /// Control btnModificarCliente.
+        /// Control btnCargarCliente.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnModificarCliente;
-
-        /// <summary>
-        /// Control btnEliminarCliente.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnEliminarCliente;
+        protected global::System.Web.UI.WebControls.Button btnCargarCliente;
     }
 }

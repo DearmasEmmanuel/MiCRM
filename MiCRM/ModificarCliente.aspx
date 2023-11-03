@@ -21,5 +21,9 @@
         <asp:TextBox ID="txtContacto" runat="server" CssClass="form-control" />
     </div>
     <asp:Button ID="btnModificarCliente" runat="server" Text="Modificar Cliente" OnClick="btnModificarCliente_Click" CssClass="btn btn-primary" />
+       
+
+    <asp:Button ID="btnEliminarCliente" runat="server" Text="Eliminar Cliente" OnClick="btnEliminarCliente_Click" CssClass="btn btn-danger" />
+
         </div>
 </asp:Content>

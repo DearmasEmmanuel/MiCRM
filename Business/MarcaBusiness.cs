@@ -100,6 +100,45 @@ namespace Business
                 data.Close();
             }
         }
+
+        public static Marca ObtenerMarcaPorID(int marcaID)
+        {
+            AccessData data = new AccessData();
+            try
+            {
+                // Define la consulta SQL para obtener la marca por su ID
+                string query = "SELECT MarcaID, Nombre FROM MARCAS WHERE MarcaID = @MarcaID";
+                data.SetQuery(query);
+                data.AddParameter("@MarcaID", marcaID);
+
+                data.ExecuteQuery();
+
+                if (data.Reader.Read())
+                {
+                    // Construye un objeto Marca con los datos obtenidos de la base de datos
+                    Marca marca = new Marca
+                    {
+                        MarcaID = (int)data.Reader["MarcaID"],
+                        Nombre = (string)data.Reader["Nombre"]
+                    };
+                    return marca;
+                }
+                else
+                {
+                    // Marca no encontrada
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                // Manejo de errores (puedes personalizarlo según tus necesidades)
+                throw ex;
+            }
+            finally
+            {
+                data.Close();
+            }
+        }
     }
 }
 

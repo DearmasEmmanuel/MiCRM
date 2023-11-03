@@ -69,8 +69,12 @@
   <ItemGroup>
     <Content Include="Admin.aspx" />
     <Content Include="CargarCliente.aspx" />
+    <Content Include="CargarClienteAdmin.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="ModificarCliente.aspx" />
+    <Content Include="ModificarClienteAdmin.aspx" />
+    <Content Include="ModificarMarca.aspx" />
+    <Content Include="NuevaMarca.aspx" />
     <Content Include="Producto.aspx" />
     <Content Include="Venta.aspx" />
     <Content Include="Web.config" />
@@ -99,6 +103,13 @@
     <Compile Include="CargarCliente.aspx.designer.cs">
       <DependentUpon>CargarCliente.aspx</DependentUpon>
     </Compile>
+    <Compile Include="CargarClienteAdmin.aspx.cs">
+      <DependentUpon>CargarClienteAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CargarClienteAdmin.aspx.designer.cs">
+      <DependentUpon>CargarClienteAdmin.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -119,6 +130,27 @@
     </Compile>
     <Compile Include="ModificarCliente.aspx.designer.cs">
       <DependentUpon>ModificarCliente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ModificarClienteAdmin.aspx.cs">
+      <DependentUpon>ModificarClienteAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ModificarClienteAdmin.aspx.designer.cs">
+      <DependentUpon>ModificarClienteAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ModificarMarca.aspx.cs">
+      <DependentUpon>ModificarMarca.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ModificarMarca.aspx.designer.cs">
+      <DependentUpon>ModificarMarca.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NuevaMarca.aspx.cs">
+      <DependentUpon>NuevaMarca.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NuevaMarca.aspx.designer.cs">
+      <DependentUpon>NuevaMarca.aspx</DependentUpon>
     </Compile>
     <Compile Include="Producto.aspx.cs">
       <DependentUpon>Producto.aspx</DependentUpon>
