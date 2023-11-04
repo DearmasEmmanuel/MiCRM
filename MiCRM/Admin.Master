@@ -51,7 +51,9 @@
                 <a href="ModificarClienteAdmin.aspx"><i class="fa fa-users"></i> Clientes Modificar</a>
                 <a href="NuevaMarca.aspx"><i class="fa fa-cogs"></i> Marca Nueva</a>
                 <a href="ModificarMarca.aspx"><i class="fa fa-cogs"></i> Marca Modificar</a>
-                <a href="#"><i class="fa fa-users"></i> Proveedores</a>
+                <a href="NuevoProveedor.aspx"><i class="fa fa-users"></i>Proveedores Nuevo</a>
+                <a href="ModificarProveedor.aspx"><i class="fa fa-users"></i>Proveedores Modificar</a>
+                <a href="UsuariosAdmin.aspx"><i class="fa fa-users"></i>Usuario Nuevo</a>
                 <a href="#"><i class="fa fa-users"></i> Vendedores</a>
                 <a href="#"><i class="fa fa-industry"></i> Inventario</a>
                 <a href="#"><i class="fa fa-cogs"></i> Configuración</a>

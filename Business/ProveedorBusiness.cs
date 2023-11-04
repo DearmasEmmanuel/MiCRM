@@ -104,6 +104,45 @@ namespace Business
             {
                 data.Close();
             }
+
+        }
+        public static Proveedor ObtenerProveedorPorID(int proveedorID)
+        {
+            AccessData data = new AccessData();
+            try
+            {
+                // Define la consulta SQL para obtener un proveedor por su ID
+                string query = "SELECT ProveedorID, Nombre, Direccion, Contacto FROM Proveedores WHERE ProveedorID = @ProveedorID";
+
+                // Configura la consulta y agrega el parámetro
+                data.SetQuery(query);
+                data.AddParameter("@ProveedorID", proveedorID);
+
+                data.ExecuteQuery();
+
+                if (data.Reader.Read())
+                {
+                    Proveedor proveedor = new Proveedor
+                    {
+                        ProveedorID = (int)data.Reader["ProveedorID"],
+                        Nombre = data.Reader["Nombre"].ToString(),
+                        Direccion = data.Reader["Direccion"].ToString(),
+                        Contacto = data.Reader["Contacto"].ToString()
+                    };
+
+                    return proveedor;
+                }
+
+                return null; // Devuelve null si no se encuentra el proveedor con ese ID
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                data.Close();
+            }
         }
     }
 }

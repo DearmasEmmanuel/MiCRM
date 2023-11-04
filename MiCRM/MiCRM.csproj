@@ -74,8 +74,11 @@
     <Content Include="ModificarCliente.aspx" />
     <Content Include="ModificarClienteAdmin.aspx" />
     <Content Include="ModificarMarca.aspx" />
+    <Content Include="ModificarProveedor.aspx" />
     <Content Include="NuevaMarca.aspx" />
+    <Content Include="NuevoProveedor.aspx" />
     <Content Include="Producto.aspx" />
+    <Content Include="UsuariosAdmin.aspx" />
     <Content Include="Venta.aspx" />
     <Content Include="Web.config" />
     <Content Include="Login.aspx" />
@@ -145,12 +148,26 @@
     <Compile Include="ModificarMarca.aspx.designer.cs">
       <DependentUpon>ModificarMarca.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ModificarProveedor.aspx.cs">
+      <DependentUpon>ModificarProveedor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ModificarProveedor.aspx.designer.cs">
+      <DependentUpon>ModificarProveedor.aspx</DependentUpon>
+    </Compile>
     <Compile Include="NuevaMarca.aspx.cs">
       <DependentUpon>NuevaMarca.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="NuevaMarca.aspx.designer.cs">
       <DependentUpon>NuevaMarca.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NuevoProveedor.aspx.cs">
+      <DependentUpon>NuevoProveedor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NuevoProveedor.aspx.designer.cs">
+      <DependentUpon>NuevoProveedor.aspx</DependentUpon>
     </Compile>
     <Compile Include="Producto.aspx.cs">
       <DependentUpon>Producto.aspx</DependentUpon>
@@ -173,6 +190,13 @@
     </Compile>
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UsuariosAdmin.aspx.cs">
+      <DependentUpon>UsuariosAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UsuariosAdmin.aspx.designer.cs">
+      <DependentUpon>UsuariosAdmin.aspx</DependentUpon>
     </Compile>
     <Compile Include="Vendedor.Master.cs">
       <DependentUpon>Vendedor.Master</DependentUpon>
