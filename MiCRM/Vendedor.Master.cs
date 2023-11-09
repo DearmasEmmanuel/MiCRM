@@ -11,7 +11,9 @@ namespace MiCRM
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["Usuario"] == null)
+                Session.Add("error", "Debes Loguearte para ingresar");
+            Response.Redirect("Login.aspx");
         }
     }
 }

@@ -49,5 +49,27 @@ namespace MiCRM
             // Puedes redirigir a una página de confirmación o a la lista de ventas
             Response.Redirect("Ventas.aspx");
         }
+
+        protected void btnAgregarProductos_Click(object sender, EventArgs e)
+        {
+            int clienteID = Convert.ToInt32(ddlClientes.SelectedValue);
+            int productoID = Convert.ToInt32(ddlProductos.SelectedValue);
+            int cantidad = Convert.ToInt32(txtCantidad.Text);
+
+
+            // Realiza la lógica para cargar la venta con los datos seleccionados
+            // Puedes llamar a un método de negocio para realizar esta acción.
+            Venta venta = new Venta
+            {
+                //ClienteID = clienteID,
+                //ProductoID = productoID,
+                //Cantidad = cantidad
+            };
+
+            // Llama a un método de negocio para cargar la venta
+            //VentaBusiness.CargarVenta(venta);
+
+
+        }
     }
 }

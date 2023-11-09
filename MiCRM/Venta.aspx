@@ -17,5 +17,7 @@
             <asp:TextBox ID="txtCantidad" runat="server" CssClass="form-control" TextMode="Number" />
         </div>
         <asp:Button ID="btnCargarVenta" runat="server" Text="Cargar Venta" OnClick="btnCargarVenta_Click" CssClass="btn btn-primary" />
+           <asp:Button ID="btnAgregarProductos" runat="server" Text="Agregar mas productos" OnClick="btnAgregarProductos_Click" CssClass="btn btn-success" />
+
     </div>
 </asp:Content>
