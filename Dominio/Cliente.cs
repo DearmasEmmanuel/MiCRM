@@ -12,7 +12,9 @@ namespace Dominio
         public string Nombre { get; set; }
         public string Direccion { get; set; }
         public string Contacto { get; set; }
+        public int DNI { get; set; }
+        public string Email { get; set; }
 
-       
+
     }
 }

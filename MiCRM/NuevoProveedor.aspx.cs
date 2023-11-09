@@ -23,13 +23,17 @@ namespace MiCRM
             string nombre = txtNombre.Text;
             string direccion = txtDireccion.Text;
             string contacto = txtContacto.Text;
+            int dni = Convert.ToInt32(txtDNI.Text);
+            string email = txtEmail.Text;
 
             // Crea un nuevo objeto Proveedor con los datos ingresados
             Proveedor nuevoProveedor = new Proveedor
             {
                 Nombre = nombre,
                 Direccion = direccion,
-                Contacto = contacto
+                Contacto = contacto,
+                DNI = dni,
+                Email = email
             };
 
             // Llama a una función de negocio para agregar el nuevo proveedor a la base de datos

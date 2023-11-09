@@ -13,7 +13,7 @@ namespace Business
             AccessData data = new AccessData();
             try
             {
-                data.SetQuery(@"SELECT ClienteID, Nombre, Direccion, Contacto FROM Clientes");
+                data.SetQuery(@"SELECT ClienteID, Nombre, Direccion, Contacto, DNI, Email FROM Clientes");
                 data.ExecuteQuery();
 
                 while (data.Reader.Read())
@@ -24,6 +24,8 @@ namespace Business
                         Nombre = (string)data.Reader["Nombre"],
                         Direccion = (string)data.Reader["Direccion"],
                         Contacto = (string)data.Reader["Contacto"],
+                        DNI = (int)data.Reader["DNI"],
+                        Email = (string)data.Reader["Email"]
                     };
                     clienteList.Add(clienteAux);
                 }
@@ -46,11 +48,13 @@ namespace Business
             try
             {
                 // Realiza la inserción del nuevo cliente en la base de datos
-                string query = "INSERT INTO Clientes (Nombre, Direccion, Contacto) VALUES (@Nombre, @Direccion, @Contacto)";
+                string query = "INSERT INTO Clientes (Nombre, Direccion, Contacto, DNI, Email) VALUES (@Nombre, @Direccion, @Contacto, @DNI, @Email )";
                 data.SetQuery(query);
                 data.AddParameter("@Nombre", cliente.Nombre);
                 data.AddParameter("@Direccion", cliente.Direccion);
                 data.AddParameter("@Contacto", cliente.Contacto);
+                data.AddParameter("@DNI", cliente.DNI);
+                data.AddParameter("@Email", cliente.Email);
                 data.ExecuteNonQuery();
             }
             catch (Exception ex)
@@ -69,12 +73,14 @@ namespace Business
             try
             {
                 // Realiza la actualización del cliente en la base de datos
-                string query = "UPDATE Clientes SET Nombre = @Nombre, Direccion = @Direccion, Contacto = @Contacto WHERE ClienteID = @ClienteID";
+                string query = "UPDATE Clientes SET Nombre = @Nombre, Direccion = @Direccion, Contacto = @Contacto, DNI = @DNI, Email = @Email WHERE ClienteID = @ClienteID";
                 data.SetQuery(query);
                 data.AddParameter("@ClienteID", cliente.ClienteID);
                 data.AddParameter("@Nombre", cliente.Nombre);
                 data.AddParameter("@Direccion", cliente.Direccion);
                 data.AddParameter("@Contacto", cliente.Contacto);
+                data.AddParameter("@DNI", cliente.DNI);
+                data.AddParameter("@Email", cliente.Email);
                 data.ExecuteNonQuery();
             }
             catch (Exception ex)
@@ -113,7 +119,7 @@ namespace Business
             AccessData data = new AccessData();
             try
             {
-                data.SetQuery("SELECT ClienteID, Nombre, Direccion, Contacto FROM Clientes WHERE ClienteID = @ClienteID");
+                data.SetQuery("SELECT ClienteID, Nombre, Direccion, Contacto, DNI, Email FROM Clientes WHERE ClienteID = @ClienteID");
                 data.AddParameter("@ClienteID", clienteID);
                 data.ExecuteQuery();
 
@@ -124,7 +130,9 @@ namespace Business
                         ClienteID = (int)data.Reader["ClienteID"],
                         Nombre = (string)data.Reader["Nombre"],
                         Direccion = (string)data.Reader["Direccion"],
-                        Contacto = (string)data.Reader["Contacto"]
+                        Contacto = (string)data.Reader["Contacto"],
+                        DNI = (int)data.Reader["DNI"],
+                        Email = (string)data.Reader["Email"]
                     };
 
                     return cliente;

@@ -36,7 +36,7 @@ namespace MiCRM
                 UsuarioBusiness.CrearUsuario(nuevoUsuario);
 
                 // Redirige a una página de confirmación o a la lista de usuarios
-                Response.Redirect("Usuarios.aspx");
+                Response.Redirect("Admin.aspx");
             }
             catch (Exception ex)
             {

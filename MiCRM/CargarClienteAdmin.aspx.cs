@@ -20,14 +20,22 @@ namespace MiCRM
             string nombre = txtNombre.Text;
             string direccion = txtDireccion.Text;
             string contacto = txtContacto.Text;
+            int dni = Convert.ToInt32(txtDNI.Text);
+            string email = txtEmail.Text;
+
 
             // Lógica para guardar el cliente en la base de datos utilizando la capa de negocio
             Cliente cliente = new Cliente
             {
                 Nombre = nombre,
                 Direccion = direccion,
-                Contacto = contacto
+                Contacto = contacto,
+                DNI = dni,
+                Email = email
+
             };
+
+          
 
             // Llama a un método de negocio para guardar el cliente
             ClienteBusiness.AgregarCliente(cliente);

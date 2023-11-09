@@ -1,15 +1,15 @@
-INSERT INTO Clientes (Nombre, Direccion, Contacto)
+INSERT INTO Clientes (Nombre, Direccion, Contacto, DNI, Email)
 VALUES
-    ('Cliente1', 'Dirección1', 'Contacto1'),
-    ('Cliente2', 'Dirección2', 'Contacto2'),
-    ('Cliente3', 'Dirección3', 'Contacto3'),
-    ('Cliente4', 'Dirección4', 'Contacto4'),
-    ('Cliente5', 'Dirección5', 'Contacto5'),
-    ('Cliente6', 'Dirección6', 'Contacto6'),
-    ('Cliente7', 'Dirección7', 'Contacto7'),
-    ('Cliente8', 'Dirección8', 'Contacto8'),
-    ('Cliente9', 'Dirección9', 'Contacto9'),
-    ('Cliente10', 'Dirección10', 'Contacto10');
+    ('Cliente1', 'Dirección1', 'Contacto1',1235448,'a1@a.com'),
+    ('Cliente2', 'Dirección2', 'Contacto2',1235464,'a2@a.com'),
+    ('Cliente3', 'Dirección3', 'Contacto3',30231564,'a3@a.com'),
+    ('Cliente4', 'Dirección4', 'Contacto4',123546,'a4@a.com'),
+    ('Cliente5', 'Dirección5', 'Contacto5',215462,'a5@a.com'),
+    ('Cliente6', 'Dirección6', 'Contacto6',1264564,'a6@a.com'),
+    ('Cliente7', 'Dirección7', 'Contacto7',456421,'a7@a.com'),
+    ('Cliente8', 'Dirección8', 'Contacto8',15646654,'a8@a.com'),
+    ('Cliente9', 'Dirección9', 'Contacto9',54564646,'9a@a.com'),
+    ('Cliente10', 'Dirección10', 'Contacto10',45612345,'a10@a.com');
 go
 INSERT INTO Productos (Nombre, Descripcion, PrecioCompra, PrecioVenta, PorcentajeGanancia, StockActual, StockMinimo, MarcaID, CategoriaID)
 VALUES
@@ -33,19 +33,28 @@ VALUES
 
 go
 
-INSERT INTO Proveedores (Nombre, Direccion, Contacto)
+
+
+INSERT INTO Proveedores (Nombre, Direccion, Contacto, DNI, Email)
 VALUES
-    ('Proveedor1', 'DirecciónProveedor1', 'ContactoProveedor1'),
-    ('Proveedor2', 'DirecciónProveedor2', 'ContactoProveedor2'),
-    ('Proveedor3', 'DirecciónProveedor3', 'ContactoProveedor3'),
-    ('Proveedor4', 'DirecciónProveedor4', 'ContactoProveedor4'),
-    ('Proveedor5', 'DirecciónProveedor5', 'ContactoProveedor5'),
-    ('Proveedor6', 'DirecciónProveedor6', 'ContactoProveedor6'),
-    ('Proveedor7', 'DirecciónProveedor7', 'ContactoProveedor7'),
-    ('Proveedor8', 'DirecciónProveedor8', 'ContactoProveedor8'),
-    ('Proveedor9', 'DirecciónProveedor9', 'ContactoProveedor9'),
-    ('Proveedor10', 'DirecciónProveedor10', 'ContactoProveedor10');
+    ('Proveedor1', 'DirecciónProveedor1', 'ContactoProveedor1', 123456789, 'proveedor1@example.com'),
+    ('Proveedor2', 'DirecciónProveedor2', 'ContactoProveedor2', 987654321, 'proveedor2@example.com'),
+    ('Proveedor3', 'DirecciónProveedor3', 'ContactoProveedor3', 456789123, 'proveedor3@example.com'),
+    ('Proveedor4', 'DirecciónProveedor4', 'ContactoProveedor4', 654321987, 'proveedor4@example.com'),
+    ('Proveedor5', 'DirecciónProveedor5', 'ContactoProveedor5', 789123456, 'proveedor5@example.com'),
+    ('Proveedor6', 'DirecciónProveedor6', 'ContactoProveedor6', 321987654, 'proveedor6@example.com'),
+    ('Proveedor7', 'DirecciónProveedor7', 'ContactoProveedor7', 567894321, 'proveedor7@example.com'),
+    ('Proveedor8', 'DirecciónProveedor8', 'ContactoProveedor8', 543219876, 'proveedor8@example.com'),
+    ('Proveedor9', 'DirecciónProveedor9', 'ContactoProveedor9', 678945321, 'proveedor9@example.com'),
+    ('Proveedor10', 'DirecciónProveedor10', 'ContactoProveedor10', 987643219, 'proveedor10@example.com');
+
 go
+
+
+
+
+
+
 INSERT INTO Usuarios (NombreUsuario, Contraseña, Rol)
 VALUES
     ('admin', 'contraseñaAdmin', 'Administrador'),
@@ -84,5 +93,4 @@ VALUES
     (2, 3, 4, 350.00);  -- Venta 2, Producto 3, 4 unidades a $350.00 cada una
 
 
-select * from Cliente
-select * from Productos
+

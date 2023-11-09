@@ -107,3 +107,15 @@ ALTER TABLE Productos
 ADD CONSTRAINT FK_Categoria
     FOREIGN KEY (CategoriaID)
     REFERENCES Categorias(CategoriaID);
+
+
+ALTER TABLE Clientes
+ADD DNI INT,
+Email VARCHAR(255);
+
+
+ALTER TABLE Proveedores
+ADD DNI INT,
+Email VARCHAR(255);
+
+

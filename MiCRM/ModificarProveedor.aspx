@@ -18,8 +18,16 @@
                 <asp:TextBox ID="txtDireccion" runat="server" CssClass="form-control" />
             </div>
             <div class="form-group">
-                <label for="txtContacto">Contacto:</label>
+                <label for="txtContacto">Telefono:</label>
                 <asp:TextBox ID="txtContacto" runat="server" CssClass="form-control" />
+            </div>
+                        <div class="form-group">
+                <label for="txtDNI">DNI:</label>
+                <asp:TextBox ID="txtDNI" runat="server" CssClass="form-control" />
+            </div>
+                        <div class="form-group">
+                <label for="txtEmail">Email:</label>
+                <asp:TextBox ID="TxtEmail" runat="server" CssClass="form-control" />
             </div>
             <asp:Button ID="btnModificarProveedor" runat="server" Text="Modificar Proveedor" OnClick="btnModificarProveedor_Click" CssClass="btn btn-primary" />
             <asp:Button ID="btnEliminarProveedor" runat="server" Text="Eliminar Proveedor" OnClick="btnEliminarProveedor_Click" CssClass="btn btn-danger" />

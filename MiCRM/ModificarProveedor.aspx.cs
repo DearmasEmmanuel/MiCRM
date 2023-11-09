@@ -33,6 +33,9 @@ namespace MiCRM
                 txtNombre.Text = proveedor.Nombre;
                 txtDireccion.Text = proveedor.Direccion;
                 txtContacto.Text = proveedor.Contacto;
+                txtDNI.Text = proveedor.DNI.ToString();
+                TxtEmail.Text = proveedor.Email;
+               
             }
         }
         protected void btnModificarProveedor_Click(object sender, EventArgs e)
@@ -41,13 +44,17 @@ namespace MiCRM
             string nombre = txtNombre.Text;
             string direccion = txtDireccion.Text;
             string contacto = txtContacto.Text;
+            int dni = Convert.ToInt32(txtDNI.Text);
+            string Email = TxtEmail.Text;
 
             Proveedor proveedorModificado = new Proveedor
             {
                 ProveedorID = proveedorID,
                 Nombre = nombre,
                 Direccion = direccion,
-                Contacto = contacto
+                Contacto = contacto,
+                DNI = dni,
+                Email = Email
             };
 
             ProveedorBusiness.EditarProveedor(proveedorModificado);

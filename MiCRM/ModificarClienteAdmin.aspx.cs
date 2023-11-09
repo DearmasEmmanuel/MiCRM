@@ -36,6 +36,8 @@ namespace MiCRM
                 txtNombre.Text = cliente.Nombre;
                 txtDireccion.Text = cliente.Direccion;
                 txtContacto.Text = cliente.Contacto;
+                txtDNI.Text = cliente.DNI.ToString();
+                txtEmail.Text = cliente.Email;
             }
         }
 
@@ -46,6 +48,8 @@ namespace MiCRM
             string nombre = txtNombre.Text;
             string direccion = txtDireccion.Text;
             string contacto = txtContacto.Text;
+            int dni = Convert.ToInt32(txtDNI.Text);
+            string email = txtEmail.Text;
 
             // Crear un objeto Cliente con los datos modificados
             Cliente clienteModificado = new Cliente
@@ -53,7 +57,9 @@ namespace MiCRM
                 ClienteID = clienteID,
                 Nombre = nombre,
                 Direccion = direccion,
-                Contacto = contacto
+                Contacto = contacto,
+                DNI = dni,
+                Email = email
             };
 
             // Llama a un método de negocio para actualizar el cliente
