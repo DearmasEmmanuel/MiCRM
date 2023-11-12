@@ -46,6 +46,7 @@ namespace Business
                 }
             }
 
+
             public void CargarVenta(Venta venta)
             {
                 AccessData data = new AccessData();
@@ -69,7 +70,53 @@ namespace Business
                     data.Close();
                 }
             }
+        private static List<DetalleVenta> detallesVenta = new List<DetalleVenta>();
 
-            // Puedes agregar más métodos para editar o eliminar ventas si es necesario.
+        public static void AgregarDetalleVenta(int productoID, int cantidad)
+        {
+            // Obtener información del producto desde tu lógica de negocio
+            Producto producto = ProductoBusiness.ObtenerProductoPorID(productoID);
+            Venta venta = new Venta();
+            venta.FechaVenta = DateTime.Now;
+
+
+            // Crear un nuevo detalle de venta
+            DetalleVenta nuevoDetalle = new DetalleVenta
+            {
+                ProductoID = productoID,
+                VentaID = venta.VentaID,  
+                PrecioVenta = producto.PrecioVenta,
+                Cantidad = cantidad,
+                
+            };
+
+            // Agregar el detalle a la lista de detalles de venta
+            
+            detallesVenta.Add(nuevoDetalle);
         }
+
+        public static List<DetalleVenta> ObtenerDetallesVenta()
+        {
+            return detallesVenta;
+        }
+
+        public static decimal CalcularTotalVenta()
+        {
+            decimal totalVenta = 0;
+
+            // Calcular el total sumando los subtotales de cada detalle
+            foreach (var detalle in detallesVenta)
+            {
+                totalVenta += detalle.PrecioVenta;
+            }
+
+            return totalVenta;
+        }
+
+        
+
+      
+
+      
+    }
     }

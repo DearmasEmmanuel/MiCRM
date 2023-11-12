@@ -152,6 +152,44 @@ namespace Business
             }
         }
 
+        public static List<Cliente> BuscarClientesPorNombre(string nombreCliente)
+        {
+            List<Cliente> clientes = new List<Cliente>();
+            
+            AccessData data = new AccessData();
+            try
+            {
+                data.SetQuery("SELECT ClienteID, Nombre, Direccion, Contacto, DNI, Email FROM Clientes WHERE Nombre LIKE @Nombre");
+                data.AddParameter("@Nombre", "%" + nombreCliente + "%");
+                data.ExecuteQuery();
+
+                while (data.Reader.Read())
+                {
+                    Cliente cliente = new Cliente
+                    {
+                        ClienteID = (int)data.Reader["ClienteID"],
+                        Nombre = (string)data.Reader["Nombre"],
+                        Direccion = (string)data.Reader["Direccion"],
+                        Contacto = (string)data.Reader["Contacto"],
+                        DNI = (int)data.Reader["DNI"],
+                        Email = (string)data.Reader["Email"]
+                    };
+
+                    clientes.Add(cliente);
+                }
+
+                return clientes;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                data.Close();
+            }
+        }
+
 
 
     }

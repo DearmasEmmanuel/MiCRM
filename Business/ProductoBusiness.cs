@@ -129,6 +129,12 @@ namespace Business
             {
                 data.Close();
             }
+
+        }
+        public static Producto ObtenerProductoPorID(int productoID)
+        {
+            // Simulamos la obtención de datos desde la lista de productos
+            return List().Find(p => p.ProductoID == productoID);
         }
     }
 }

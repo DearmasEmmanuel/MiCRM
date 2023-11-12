@@ -13,7 +13,6 @@ namespace Dominio
         public int ProductoID { get; set; }
         public int Cantidad { get; set; }
         public decimal PrecioVenta { get; set; }
-
-        
+        public decimal Subtotal { get; set; }
     }
 }
