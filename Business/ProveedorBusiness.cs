@@ -153,5 +153,43 @@ namespace Business
                 data.Close();
             }
         }
+
+        public static List<Proveedor> BuscarProveedorPorNombre(string nombreProveedor)
+        {
+            List<Proveedor> proveedores = new List<Proveedor>();
+
+            AccessData data = new AccessData();
+            try
+            {
+                data.SetQuery("SELECT ProveedorID, Nombre, Direccion, Contacto, DNI, Email FROM Proveedores WHERE Nombre LIKE @Nombre");
+                data.AddParameter("@Nombre", "%" + nombreProveedor + "%");
+                data.ExecuteQuery();
+
+                while (data.Reader.Read())
+                {
+                    Proveedor proveedor = new Proveedor
+                    {
+                        ProveedorID = (int)data.Reader["ProveedorID"],
+                        Nombre = (string)data.Reader["Nombre"],
+                        Direccion = (string)data.Reader["Direccion"],
+                        Contacto = (string)data.Reader["Contacto"],
+                        DNI = (int)data.Reader["DNI"],
+                        Email = (string)data.Reader["Email"]
+                    };
+
+                    proveedores.Add(proveedor);
+                }
+
+                return proveedores;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                data.Close();
+            }
+        }
     }
 }

@@ -21,7 +21,7 @@ namespace Business
                 data.ExecuteQuery();
                 while (data.Reader.Read())
                 {
-                    Usuario usario = new Usuario()
+                    Usuario usuario = new Usuario()
                     {
                         UsuarioID = (int)data.Reader["UsuarioID"],
                         NombreUsuario = data.Reader["NombreUsuario"].ToString(),

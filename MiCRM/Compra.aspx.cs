@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
+using System.Web.UI;
 using System.Web.UI.WebControls;
 using Business;
 using Dominio;
 
 namespace MiCRM
 {
-    public partial class Ventas : System.Web.UI.Page
+    public partial class Compra : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -19,47 +21,47 @@ namespace MiCRM
                 ddlProductos.DataValueField = "ProductoID";
                 ddlProductos.DataBind();
 
-                // Inicializar GridView de detalles de la venta
-                InicializarGridViewDetallesVenta();
+                // Inicializar GridView de detalles de la compra
+                InicializarGridViewDetallesCompra();
             }
         }
-
-        protected void btnBuscarCliente_Click(object sender, EventArgs e)
+        protected void btnBuscarProveedor_Click(object sender, EventArgs e)
         {
-            string nombreCliente = txtCliente.Text;
-            List<Cliente> clientes = ClienteBusiness.BuscarClientesPorNombre(nombreCliente);
-            gvClientes.DataSource = clientes;
-            gvClientes.DataBind();
-            gvClientes.Visible = true;
+            string nombreProveedor = txtProveedor.Text;
+            List<Proveedor> proveedor = ProveedorBusiness.BuscarProveedorPorNombre(nombreProveedor);
+            gvProveedores.DataSource = proveedor;
+            gvProveedores.DataBind();
+            gvProveedores.Visible = true;
         }
-
-        protected void gvClientes_SelectedIndexChanged(object sender, EventArgs e)
+        protected void btnCancelar_Click(object sender, EventArgs e)
         {
-            int clienteID = (int)gvClientes.SelectedDataKey.Value;
-            Cliente clienteSeleccionado = ClienteBusiness.ObtenerClientePorID(clienteID);
-
-            fvCliente.DataSource = new List<Cliente> { clienteSeleccionado };
-            fvCliente.DataBind();
-            gvClientes.Visible = false;
-
+            if (gvProveedores.Visible)
+            gvProveedores.Visible = false;
         }
+        protected void gvProveedores_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int proveedorID = (int)gvProveedores.SelectedDataKey.Value;
+            Proveedor proveedorSeleccionado = ProveedorBusiness.ObtenerProveedorPorID(proveedorID);
 
-        protected void btnCargarVenta_Click(object sender, EventArgs e)
+            fvProveedor.DataSource = new List<Proveedor> { proveedorSeleccionado };
+            fvProveedor.DataBind();
+            gvProveedores.Visible = false;
+        }
+        protected void btnCargarCompra_Click(object sender, EventArgs e)
         {
             // Lógica para cargar la venta con el producto seleccionado
             int productoID = Convert.ToInt32(ddlProductos.SelectedValue);
             int cantidad = Convert.ToInt32(txtCantidad.Text);
 
             // Agregar el detalle de la venta
-            VentaBusiness.AgregarDetalleVenta(productoID, cantidad);
+            CompraBusiness.AgregarDetalleCompra(productoID, cantidad);
 
             // Actualizar el GridView de detalles de la venta
-            ActualizarGridViewDetallesVenta();
+            ActualizarGridViewDetallesCompra();
 
             // Calcular y mostrar el total de la venta
-            CalcularTotalVenta();
+            CalcularTotalCompra();
         }
-
         protected void btnAgregarProductos_Click(object sender, EventArgs e)
         {
             // Obtener los valores seleccionados antes de limpiar los campos
@@ -74,9 +76,9 @@ namespace MiCRM
             if (cantidad > 0)
             {
                 // Agregar el detalle de la venta
-                VentaBusiness.AgregarDetalleVenta(productoID, cantidad);
-                ActualizarGridViewDetallesVenta();
-                CalcularTotalVenta();
+                CompraBusiness.AgregarDetalleCompra(productoID, cantidad);
+                ActualizarGridViewDetallesCompra();
+                CalcularTotalCompra();
 
                 // Puedes usar un control de Label o mostrar mensajes de alerta según tu preferencia
                 lblMensaje.Text = "Productos agregados exitosamente.";
@@ -86,34 +88,29 @@ namespace MiCRM
                 lblMensaje.Text = "La cantidad debe ser mayor que cero.";
             }
         }
-
-
-        protected void btnFinalizarVenta_Click(object sender, EventArgs e)
+        protected void btnFinalizarCompra_Click(object sender, EventArgs e)
         {
             // Lógica para finalizar la venta
             // Puedes implementar esta lógica según tus necesidades
         }
-
-        private void InicializarGridViewDetallesVenta()
+        private void InicializarGridViewDetallesCompra()
         {
-            // Inicializar el GridView de detalles de la venta
-            gvDetallesVenta.DataSource = new List<DetalleVentas>();
-            gvDetallesVenta.DataBind();
+            // Inicializar el GridView de detalles de la compra
+            gvDetallesCompra.DataSource = new List<DetalleCompras>();
+            gvDetallesCompra.DataBind();
         }
-
-        private void ActualizarGridViewDetallesVenta()
+        private void ActualizarGridViewDetallesCompra()
         {
             // Actualizar el GridView de detalles de la venta
-            List<DetalleVentas> detallesVenta = VentaBusiness.ObtenerDetallesVenta();
-            gvDetallesVenta.DataSource = detallesVenta;
-            gvDetallesVenta.DataBind();
+            List<DetalleCompras> detallesCompra = CompraBusiness.ObtenerDetallesCompra();
+            gvDetallesCompra.DataSource = detallesCompra;
+            gvDetallesCompra.DataBind();
         }
-
-        private void CalcularTotalVenta()
+        private void CalcularTotalCompra()
         {
             // Calcular y mostrar el total de la venta
             decimal totalVenta = VentaBusiness.CalcularTotalVenta();
-            lblTotalVenta.Text = $"Total: {totalVenta:C}";
+            lblTotalCompra.Text = $"Total: {totalVenta:C}";
         }
     }
 }

@@ -70,7 +70,9 @@
     <Content Include="Admin.aspx" />
     <Content Include="CargarCliente.aspx" />
     <Content Include="CargarClienteAdmin.aspx" />
+    <Content Include="Compra.aspx" />
     <Content Include="Default.aspx" />
+    <Content Include="Estilos.css" />
     <Content Include="ModificarCliente.aspx" />
     <Content Include="ModificarClienteAdmin.aspx" />
     <Content Include="ModificarMarca.aspx" />
@@ -112,6 +114,13 @@
     </Compile>
     <Compile Include="CargarClienteAdmin.aspx.designer.cs">
       <DependentUpon>CargarClienteAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Compra.aspx.cs">
+      <DependentUpon>Compra.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Compra.aspx.designer.cs">
+      <DependentUpon>Compra.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>

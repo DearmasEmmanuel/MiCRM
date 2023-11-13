@@ -7,70 +7,69 @@ using Dominio;
 
 namespace Business
 {
-   
-        public class VentaBusiness
+
+    public class VentaBusiness
+    {
+        public static List<Venta> List()
         {
-            public static List<Venta> List()
+            List<Venta> ventaList = new List<Venta>();
+            AccessData data = new AccessData();
+
+            try
             {
-                List<Venta> ventaList = new List<Venta>();
-                AccessData data = new AccessData();
+                data.SetQuery("SELECT VentaID, ClienteID, ProductoID, Cantidad, FechaVenta FROM Ventas,Producto");
+                data.ExecuteQuery();
 
-                try
+                while (data.Reader.Read())
                 {
-                    data.SetQuery("SELECT VentaID, ClienteID, ProductoID, Cantidad, FechaVenta FROM Ventas,Producto");
-                    data.ExecuteQuery();
-
-                    while (data.Reader.Read())
+                    Venta venta = new Venta()
                     {
-                        Venta venta = new Venta
-                        {
-                            VentaID = (int)data.Reader["VentaID"],
-                            ClienteID = (int)data.Reader["ClienteID"],
-                           // ProductoID = (int)data.Reader["ProductoID"],
-                            //Cantidad = (int)data.Reader["Cantidad"],
-                            FechaVenta = (DateTime)data.Reader["FechaVenta"]
-                        };
+                        VentaID = (int)data.Reader["VentaID"],
+                        ClienteID = (int)data.Reader["ClienteID"],
+                        // ProductoID = (int)data.Reader["ProductoID"],
+                        //Cantidad = (int)data.Reader["Cantidad"],
+                        FechaVenta = (DateTime)data.Reader["FechaVenta"]
+                    };
 
-                        ventaList.Add(venta);
-                    }
+                    ventaList.Add(venta);
+                }
 
-                    return ventaList;
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
-                finally
-                {
-                    data.Close();
-                }
+                return ventaList;
             }
-
-
-            public void CargarVenta(Venta venta)
+            catch (Exception ex)
             {
-                AccessData data = new AccessData();
-                try
-                {
-                    // Realiza la inserción de la venta en la base de datos
-                    string query = "INSERT INTO Venta (ClienteID, ProductoID, Cantidad, FechaVenta) VALUES (@ClienteID, @ProductoID, @Cantidad, @FechaVenta)";
-                    data.SetQuery(query);
-                    data.AddParameter("@ClienteID", venta.ClienteID);
-                    //data.AddParameter("@ProductoID", venta.ProductoID);
-                   // data.AddParameter("@Cantidad", venta.Cantidad);
-                    data.AddParameter("@FechaVenta", DateTime.Now); // Fecha actual
-                    data.ExecuteNonQuery();
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
-                finally
-                {
-                    data.Close();
-                }
+                throw ex;
             }
-        private static List<DetalleVenta> detallesVenta = new List<DetalleVenta>();
+            finally
+            {
+                data.Close();
+            }
+        }
+        public void CargarVenta(Venta venta)
+        {
+            AccessData data = new AccessData();
+            try
+            {
+                // Realiza la inserción de la venta en la base de datos
+                string query = "INSERT INTO Venta (ClienteID, ProductoID, Cantidad, FechaVenta) VALUES (@ClienteID, @ProductoID, @Cantidad, @FechaVenta)";
+                data.SetQuery(query);
+                data.AddParameter("@ClienteID", venta.ClienteID);
+                //data.AddParameter("@ProductoID", venta.ProductoID);
+                //data.AddParameter("@Cantidad", venta.Cantidad);
+                data.AddParameter("@FechaVenta", DateTime.Now); // Fecha actual
+                data.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                data.Close();
+            }
+        }
+
+        private static List<DetalleVentas> detallesVenta = new List<DetalleVentas>();
 
         public static void AgregarDetalleVenta(int productoID, int cantidad)
         {
@@ -81,21 +80,21 @@ namespace Business
 
 
             // Crear un nuevo detalle de venta
-            DetalleVenta nuevoDetalle = new DetalleVenta
+            DetalleVentas nuevoDetalle = new DetalleVentas
             {
                 ProductoID = productoID,
-                VentaID = venta.VentaID,  
+                VentaID = venta.VentaID,
                 PrecioVenta = producto.PrecioVenta,
                 Cantidad = cantidad,
-                
+
             };
 
             // Agregar el detalle a la lista de detalles de venta
-            
+
             detallesVenta.Add(nuevoDetalle);
         }
 
-        public static List<DetalleVenta> ObtenerDetallesVenta()
+        public static List<DetalleVentas> ObtenerDetallesVenta()
         {
             return detallesVenta;
         }
@@ -113,10 +112,10 @@ namespace Business
             return totalVenta;
         }
 
-        
 
-      
 
-      
+
+
+
     }
-    }
+}

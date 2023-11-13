@@ -36,8 +36,6 @@ namespace MiCRM
         protected void btnCargarCliente_Click(object sender, EventArgs e)
         {
             Response.Redirect("CargarCliente.aspx");
-
-
         }
 
         protected void btnRealizarCompra_Click(object sender, EventArgs e)
