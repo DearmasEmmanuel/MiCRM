@@ -66,20 +66,20 @@ namespace Business
             }
         }
 
-        //public void ejecutarAccion()
-        //{
-        //    command.Connection = this.connection;
-        //    try
-        //    {
-        //        connection.Open();
-        //        command.ExecuteNonQuery();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw ex;
-        //    }
+        public object ExecuteScalar()
+        {
+            try
+            {
+                this.command.Connection = this.connection;
+                this.connection.Open();
+                return this.command.ExecuteScalar();
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
 
-        //}
         public int ExecuteNonQuery()
         {
             try

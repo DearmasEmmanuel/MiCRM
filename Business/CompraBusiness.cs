@@ -45,19 +45,19 @@ namespace Business
                 data.Close();
             }
         }
-        public void CargarCompra(Compra compra)
+        public static int CargarCompra(Compra compra)
         {
             AccessData data = new AccessData();
             try
             {
                 // Realiza la inserción de la compra en la base de datos
-                string query = "INSERT INTO Compra (ProveedorID, ProductoID, Cantidad, FechaCompra) VALUES (@ClienteID, @ProductoID, @Cantidad, @FechaCompra)";
+                string query = "INSERT INTO Compras (ProveedorID, FechaCompra) VALUES (@ProveedorID, @FechaCompra); SELECT CAST(SCOPE_IDENTITY() AS INT);";
                 data.SetQuery(query);
-                data.AddParameter("@ClienteID", compra.ProveedorID);
-                //data.AddParameter("@ProductoID", compra.ProductoID);
-                //data.AddParameter("@Cantidad", compra.Cantidad);
+                data.AddParameter("@ProveedorID", compra.ProveedorID);
                 data.AddParameter("@FechaCompra", DateTime.Now); // Fecha actual
-                data.ExecuteNonQuery();
+                int ultimoID = Convert.ToInt32(data.ExecuteScalar());
+
+                return ultimoID;
             }
             catch (Exception ex)
             {
@@ -68,6 +68,7 @@ namespace Business
                 data.Close();
             }
         }
+
         private static List<DetalleCompras> detallesCompra = new List<DetalleCompras>();
 
         public static void AgregarDetalleCompra(int productoID, int cantidad)

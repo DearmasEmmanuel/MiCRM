@@ -1,11 +1,10 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Vendedor.Master" AutoEventWireup="true" CodeBehind="Compra.aspx.cs" Inherits="MiCRM.Compra" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="Compra.aspx.cs" Inherits="MiCRM.Compras" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-        <div class="container mt-5">
+    <div class="container mt-5">
         <h1>Compra</h1>
 
         <!-- Sección para buscar y seleccionar proveedor -->
@@ -31,6 +30,10 @@
         <h3>Detalles del Proveedor:</h3>
         <asp:FormView ID="fvProveedor" runat="server" CssClass="table table-striped" DefaultMode="ReadOnly">
             <ItemTemplate>
+                <div>
+                    <strong>Proveedor:</strong>
+                    <asp:Label ID="lblProveedorId" runat="server" Text='<%# Eval("ProveedorId") %>'></asp:Label>
+                </div>
                 <div>
                     <strong>Nombre:</strong>
                     <asp:Label ID="lblNombre" runat="server" Text='<%# Eval("Nombre") %>'></asp:Label>
@@ -59,16 +62,16 @@
                 <label for="txtCantidad">Cantidad:</label>
                 <asp:TextBox ID="txtCantidad" runat="server" CssClass="form-control" TextMode="Number" />
             </div>
-            <!-- Botones para cargar la venta -->
+            <!-- Botones para cargar la compra -->
             <asp:Button ID="btnCargarCompra" runat="server" Text="Cargar Compra" OnClick="btnCargarCompra_Click" CssClass="btn btn-primary" />
             <asp:Button ID="btnAgregarProductos" runat="server" Text="Agregar más productos" OnClick="btnAgregarProductos_Click" CssClass="btn btn-success" />
             <asp:Label ID="lblMensaje" runat="server" Text=""></asp:Label>
         </div>
 
-        <!-- GridView para mostrar detalles de la venta -->
+        <!-- GridView para mostrar detalles de la compra -->
         <h3>Detalles de la Compra:</h3>
 
-        <asp:GridView ID="gvDetallesCompra" runat="server" AutoGenerateColumns="False" CssClass="table table-striped">
+        <asp:GridView ID="gvDetallesCompra" runat="server" AutoGenerateColumns="False" CssClass="table table-striped" OnRowDeleting="gvDetallesCompra_RowDeleting">
             <Columns>
                 <asp:BoundField DataField="ProductoID" HeaderText="Producto" />
                 <asp:BoundField DataField="Cantidad" HeaderText="Cantidad" />
@@ -78,13 +81,13 @@
             </Columns>
         </asp:GridView>
 
-        <!-- Sección para el total de la venta -->
+        <!-- Sección para el total de la compra -->
         <div class="mt-3">
             <h3>Total de la Compra:</h3>
             <asp:Label ID="lblTotalCompra" runat="server" CssClass="h4 text-success"></asp:Label>
         </div>
 
-        <!-- Botón para finalizar la venta -->
+        <!-- Botón para finalizar la compra -->
         <asp:Button ID="btnFinalizarCompra" runat="server" Text="Finalizar Compra" OnClick="btnFinalizarCompra_Click" CssClass="btn btn-danger mt-3" />
 
     </div>

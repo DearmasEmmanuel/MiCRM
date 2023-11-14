@@ -11,7 +11,7 @@ namespace MiCRM
 {
 
 
-    public partial class Compra
+    public partial class Compras
     {
 
         /// <summary>
