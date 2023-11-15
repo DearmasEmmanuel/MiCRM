@@ -86,12 +86,25 @@ namespace Business
                 VentaID = venta.VentaID,
                 PrecioVenta = producto.PrecioVenta,
                 Cantidad = cantidad,
+                Subtotal = cantidad * producto.PrecioVenta, // Calcular el subtotal al agregar el detalle
 
             };
 
             // Agregar el detalle a la lista de detalles de venta
 
             detallesVenta.Add(nuevoDetalle);
+        }
+        public static void EliminarDetalleVenta(int productoID)
+        {
+            // Obtener el detalle de venta que coincide con el productoID
+            DetalleVentas detalleAEliminar = detallesVenta.FirstOrDefault(d => d.ProductoID == productoID);
+
+            // Verificar si se encontró el detalle
+            if (detalleAEliminar != null)
+            {
+                // Eliminar el detalle de la lista
+                detallesVenta.Remove(detalleAEliminar);
+            }
         }
 
         public static List<DetalleVentas> ObtenerDetallesVenta()
@@ -106,7 +119,7 @@ namespace Business
             // Calcular el total sumando los subtotales de cada detalle
             foreach (var detalle in detallesVenta)
             {
-                totalVenta += detalle.PrecioVenta;
+                totalVenta += detalle.Subtotal;
             }
 
             return totalVenta;

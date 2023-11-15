@@ -127,5 +127,28 @@ namespace MiCRM
             return !string.IsNullOrEmpty(nombreProducto) ? nombreProducto : "Producto no encontrado";
         }
 
+        protected void gvDetallesVenta_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            int productoID = -1;
+
+            if (e.RowIndex >= 0 && e.RowIndex < gvDetallesVenta.Rows.Count)
+            {
+                
+                productoID = Convert.ToInt32(gvDetallesVenta.DataKeys[e.RowIndex].Values["ProductoID"]);
+
+
+               
+                VentaBusiness.EliminarDetalleVenta(productoID);
+
+                
+                ActualizarGridViewDetallesVenta();
+
+                
+                CalcularTotalVenta();
+            }
+        }
+
+
+
     }
 }
