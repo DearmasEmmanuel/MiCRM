@@ -13,6 +13,23 @@ namespace MiCRM
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                //if (Session["NombreUsuario"] != null)
+                //{
+                //    lblUsuario.Text = Session["NombreUsuario"].ToString();
+                //}
+                //else
+                //{
+
+                //}
+
+                gvUser.DataSource = UsuarioBusiness.List();
+                gvUser.DataBind();
+                //ddlClientes.DataSource = ClienteBusiness.List();
+                //ddlClientes.DataTextField = "Nombre";
+                //ddlClientes.DataBind();
+            }
 
         }
         protected void btnCrearUsuario_Click(object sender, EventArgs e)

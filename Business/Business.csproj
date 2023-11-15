@@ -45,6 +45,7 @@
     <Compile Include="DetalleVentaBusiness.cs" />
     <Compile Include="ProveedorBusiness.cs" />
     <Compile Include="UsuarioBusiness.cs" />
+    <Compile Include="CompraBusiness.cs" />
     <Compile Include="VentaBusiness.cs" />
     <Compile Include="ClienteBusiness.cs" />
     <Compile Include="LoginBusiness.cs" />

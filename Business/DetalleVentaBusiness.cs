@@ -9,9 +9,9 @@ namespace Business
 {
     public class DetalleVentaBusiness
     {
-        public static List<DetalleVenta> ListarDetallesVentaPorVentaID(int ventaID)
+        public static List<DetalleVentas> ListarDetallesVentaPorVentaID(int ventaID)
         {
-            List<DetalleVenta> detallesVenta = new List<DetalleVenta>();
+            List<DetalleVentas> detallesVenta = new List<DetalleVentas>();
             AccessData data = new AccessData();
             try
             {
@@ -25,7 +25,7 @@ namespace Business
                 while (data.Reader.Read())
                 {
                     // Construye objetos DetalleVenta con los datos obtenidos de la base de datos
-                    DetalleVenta detalleVenta = new DetalleVenta
+                    DetalleVentas detalleVenta = new DetalleVentas
                     {
                         DetalleVentaID = (int)data.Reader["DetalleVentaID"],
                         VentaID = (int)data.Reader["VentaID"],
@@ -48,8 +48,7 @@ namespace Business
                 data.Close();
             }
         }
-
-        public static void AgregarDetalleVenta(DetalleVenta detalleVenta)
+        public static void AgregarDetalleVenta(DetalleVentas detalleVenta)
         {
             AccessData data = new AccessData();
             try
@@ -74,7 +73,6 @@ namespace Business
                 data.Close();
             }
         }
-
         // Agrega las funciones de EditarDetalleVenta y EliminarDetalleVenta si es necesario.
     }
 }

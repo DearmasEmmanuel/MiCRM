@@ -98,14 +98,14 @@ namespace MiCRM
         private void InicializarGridViewDetallesVenta()
         {
             // Inicializar el GridView de detalles de la venta
-            gvDetallesVenta.DataSource = new List<DetalleVenta>();
+            gvDetallesVenta.DataSource = new List<DetalleVentas>();
             gvDetallesVenta.DataBind();
         }
 
         private void ActualizarGridViewDetallesVenta()
         {
             // Actualizar el GridView de detalles de la venta
-            List<DetalleVenta> detallesVenta = VentaBusiness.ObtenerDetallesVenta();
+            List<DetalleVentas> detallesVenta = VentaBusiness.ObtenerDetallesVenta();
             gvDetallesVenta.DataSource = detallesVenta;
             gvDetallesVenta.DataBind();
         }

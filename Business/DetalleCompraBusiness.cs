@@ -9,9 +9,9 @@ namespace Business
 {
     public class DetalleCompraBusiness
     {
-        public static List<DetalleCompra> ListarDetallesCompraPorCompraID(int compraID)
+        public static List<DetalleCompras> ListarDetallesCompraPorCompraID(int compraID)
         {
-            List<DetalleCompra> detallesCompra = new List<DetalleCompra>();
+            List<DetalleCompras> detallesCompra = new List<DetalleCompras>();
             AccessData data = new AccessData();
             try
             {
@@ -25,7 +25,7 @@ namespace Business
                 while (data.Reader.Read())
                 {
                     // Construye objetos DetalleCompra con los datos obtenidos de la base de datos
-                    DetalleCompra detalleCompra = new DetalleCompra
+                    DetalleCompras detalleCompra = new DetalleCompras
                     {
                         DetalleCompraID = (int)data.Reader["DetalleCompraID"],
                         CompraID = (int)data.Reader["CompraID"],
@@ -49,7 +49,7 @@ namespace Business
             }
         }
 
-        public static void AgregarDetalleCompra(DetalleCompra detalleCompra)
+        public static void AgregarDetalleCompra(DetalleCompras detalleCompra)
         {
             AccessData data = new AccessData();
             try

@@ -22,8 +22,9 @@ namespace MiCRM
             Marca marca = new Marca()
                 {
 
-                Nombre = nombreMarca
+                Nombre = nombreMarca,
              };
+
             MarcaBusiness.AgregarMarca(marca);
             Response.Redirect("Admin.aspx");
             }

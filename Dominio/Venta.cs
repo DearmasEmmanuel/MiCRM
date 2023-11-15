@@ -12,6 +12,5 @@ namespace Dominio
         public int ClienteID { get; set; }
         public DateTime FechaVenta { get; set; }
 
-        
     }
 }
