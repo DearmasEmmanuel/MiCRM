@@ -136,5 +136,13 @@ namespace Business
             // Simulamos la obtención de datos desde la lista de productos
             return List().Find(p => p.ProductoID == productoID);
         }
+        public string ObtenerNombreProducto(int productoID)
+        {
+            // Lógica para obtener el producto basándote en su ID
+            Producto producto = ProductoBusiness.ObtenerProductoPorID(productoID);
+
+            // Devolver el nombre del producto si se encuentra, o un mensaje de error si no se encuentra
+            return producto != null ? producto.Nombre : "Producto no encontrado";
+        }
     }
 }
