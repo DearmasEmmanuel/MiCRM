@@ -20,6 +20,7 @@ namespace MiCRM
                 ddlProductos.DataBind();
 
                 // Inicializar GridView de detalles de la venta
+               
                 InicializarGridViewDetallesVenta();
             }
         }
@@ -115,5 +116,16 @@ namespace MiCRM
             decimal totalVenta = VentaBusiness.CalcularTotalVenta();
             lblTotalVenta.Text = $"Total: {totalVenta:C}";
         }
+        protected string ObtenerNombreProducto(int productoID)
+        {
+            // Crear una instancia de ProductoBusiness
+            ProductoBusiness productoBusiness = new ProductoBusiness();
+
+            // Lógica para obtener el nombre del producto basándote en su ID
+            string nombreProducto = productoBusiness.ObtenerNombreProducto(productoID);
+
+            return !string.IsNullOrEmpty(nombreProducto) ? nombreProducto : "Producto no encontrado";
+        }
+
     }
 }

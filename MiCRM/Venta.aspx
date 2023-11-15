@@ -68,14 +68,19 @@
         <h3>Detalles de la Venta:</h3>
         <asp:GridView ID="gvDetallesVenta" runat="server" AutoGenerateColumns="False" CssClass="table table-striped">
             <Columns>
-                <asp:BoundField DataField="NombreProducto" HeaderText="Producto" />
+                <asp:TemplateField HeaderText="Producto">
+                    <ItemTemplate>
+                        <%# ObtenerNombreProducto(Convert.ToInt32(Eval("ProductoID"))) %>
+                    </ItemTemplate>
+                </asp:TemplateField>
+
                 <asp:BoundField DataField="Cantidad" HeaderText="Cantidad" />
-                
-                <asp:BoundField DataField="PrecioUnitario" HeaderText="Precio Unitario" />
+                <asp:BoundField DataField="PrecioVenta" HeaderText="Precio Unitario" />
                 <asp:BoundField DataField="Subtotal" HeaderText="Subtotal" />
                 <asp:CommandField ShowDeleteButton="True" DeleteText="Eliminar" />
             </Columns>
         </asp:GridView>
+
 
         <!-- Sección para el total de la venta -->
         <div class="mt-3">
