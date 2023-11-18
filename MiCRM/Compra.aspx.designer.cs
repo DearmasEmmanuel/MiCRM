@@ -78,15 +78,6 @@ namespace MiCRM
         protected global::System.Web.UI.WebControls.TextBox txtCantidad;
 
         /// <summary>
-        /// Control btnCargarCompra.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCargarCompra;
-
-        /// <summary>
         /// Control btnAgregarProductos.
         /// </summary>
         /// <remarks>
@@ -105,13 +96,13 @@ namespace MiCRM
         protected global::System.Web.UI.WebControls.Label lblMensaje;
 
         /// <summary>
-        /// Control gvDetallesCompra.
+        /// Control btnFinalizarCompra.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvDetallesCompra;
+        protected global::System.Web.UI.WebControls.Button btnFinalizarCompra;
 
         /// <summary>
         /// Control lblTotalCompra.
@@ -123,12 +114,12 @@ namespace MiCRM
         protected global::System.Web.UI.WebControls.Label lblTotalCompra;
 
         /// <summary>
-        /// Control btnFinalizarCompra.
+        /// Control gvDetallesCompra.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnFinalizarCompra;
+        protected global::System.Web.UI.WebControls.GridView gvDetallesCompra;
     }
 }

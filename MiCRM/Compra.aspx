@@ -63,9 +63,19 @@
                 <asp:TextBox ID="txtCantidad" runat="server" CssClass="form-control" TextMode="Number" />
             </div>
             <!-- Botones para cargar la compra -->
-            <asp:Button ID="btnCargarCompra" runat="server" Text="Cargar Compra" OnClick="btnCargarCompra_Click" CssClass="btn btn-primary" />
             <asp:Button ID="btnAgregarProductos" runat="server" Text="Agregar más productos" OnClick="btnAgregarProductos_Click" CssClass="btn btn-success" />
             <asp:Label ID="lblMensaje" runat="server" Text=""></asp:Label>
+        </div>
+
+        <!-- Botón para finalizar la compra -->
+        <div class="mt-3 d-flex justify-content-start">
+            <asp:Button ID="btnFinalizarCompra" runat="server" Text="Finalizar Compra" OnClick="btnFinalizarCompra_Click" CssClass="btn btn-danger mt-3 ml-3" />
+        </div>
+
+        <!-- Sección para el total de la compra -->
+        <div class="mt-3 d-flex justify-content-end">
+            <h3>Total de la Compra:</h3>
+            <asp:Label ID="lblTotalCompra" runat="server" CssClass="h4 text-success"></asp:Label>
         </div>
 
         <!-- GridView para mostrar detalles de la compra -->
@@ -80,15 +90,6 @@
                 <asp:CommandField ShowDeleteButton="True" DeleteText="Eliminar" />
             </Columns>
         </asp:GridView>
-
-        <!-- Sección para el total de la compra -->
-        <div class="mt-3">
-            <h3>Total de la Compra:</h3>
-            <asp:Label ID="lblTotalCompra" runat="server" CssClass="h4 text-success"></asp:Label>
-        </div>
-
-        <!-- Botón para finalizar la compra -->
-        <asp:Button ID="btnFinalizarCompra" runat="server" Text="Finalizar Compra" OnClick="btnFinalizarCompra_Click" CssClass="btn btn-danger mt-3" />
 
     </div>
 

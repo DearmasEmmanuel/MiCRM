@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -24,6 +25,7 @@ namespace MiCRM
                 // Inicializar GridView de detalles de la compra
                 InicializarGridViewDetallesCompra();
             }
+
         }
         protected void btnBuscarProveedor_Click(object sender, EventArgs e)
         {
@@ -47,28 +49,10 @@ namespace MiCRM
             fvProveedor.DataBind();
             gvProveedores.Visible = false;
         }
-        protected void btnCargarCompra_Click(object sender, EventArgs e)
-        {
-            if (!(txtCantidad.Text.Equals("")))
-            {
-                // Lógica para cargar la compra con el producto seleccionado
-                int productoID = Convert.ToInt32(ddlProductos.SelectedValue);
-                int cantidad = Convert.ToInt32(txtCantidad.Text);
-
-                // Agregar el detalle de la compra
-                CompraBusiness.AgregarDetalleCompra(productoID, cantidad);
-
-                // Actualizar el GridView de detalles de la compra
-                ActualizarGridViewDetallesCompra();
-
-                // Calcular y mostrar el total de la compra
-                CalcularTotalCompra();
-            }
-        }
         protected void btnAgregarProductos_Click(object sender, EventArgs e)
         {
             // Obtener los valores seleccionados antes de limpiar los campos
-            if (!(txtCantidad.Text is null))
+            if (!(txtCantidad.Text.Equals("")))
             {
                 int productoID = Convert.ToInt32(ddlProductos.SelectedValue);
                 int cantidad = Convert.ToInt32(txtCantidad.Text);
@@ -92,50 +76,57 @@ namespace MiCRM
                 {
                     lblMensaje.Text = "La cantidad debe ser mayor que cero.";
                 }
-
             }
         }
         protected void btnFinalizarCompra_Click(object sender, EventArgs e)
         {
-            // Generamos la compra
-            int proveedor;
-
-            // Accede a los controles dentro del ItemTemplate
-            Label lblProveedor = (Label)fvProveedor.FindControl("lblProveedorId");
-
-            // Obtiene los valores de los controles
-            proveedor = Convert.ToInt32(lblProveedor.Text);
-
-            // Generamos la compra en la DB
-
-            Compra compra = new Compra()
+            if (GridViewDetallesCompraVacio()) //Comprobamos si la grilla esta vacia
             {
-                ProveedorID = proveedor
-            };
+                // Generamos la compra
+                int proveedor;
 
-            int compraId = CompraBusiness.CargarCompra(compra);
+                // Accede a los controles dentro del ItemTemplate
+                Label lblProveedor = (Label)fvProveedor.FindControl("lblProveedorId");
 
+                // Obtiene los valores de los controles
+                proveedor = Convert.ToInt32(lblProveedor.Text);
 
-            // Lógica para finalizar la compra
-            foreach (GridViewRow row in gvDetallesCompra.Rows)
-            {
-                // Accede a los valores de las celdas en cada fila
-                int productoID = Convert.ToInt32((Label)row.FindControl("lblProductoID"));
-                int cantidad = Convert.ToInt32((Label)row.FindControl("lblCantidad"));
-                decimal precioCompra = Convert.ToInt32((Label)row.FindControl("lblPrecioCompra"));
-                //string subtotal = ((Label)row.FindControl("lblSubtotal")).Text;
+                // Generamos la compra en la DB
 
-                // Aquí puedes realizar operaciones o validaciones con los datos si es necesario
-                DetalleCompras detallecompra = new DetalleCompras()
+                Compra compra = new Compra()
                 {
-                    CompraID = compraId,
-                    ProductoID = productoID,
-                    Cantidad = cantidad,
-                    PrecioCompra = precioCompra
+                    ProveedorID = proveedor
                 };
-                DetalleCompraBusiness.AgregarDetalleCompra(detallecompra);
-            }
 
+                int compraId = CompraBusiness.CargarCompra(compra);
+
+                // Lógica para finalizar la compra
+                foreach (GridViewRow row in gvDetallesCompra.Rows)
+                {
+                    // Accede a los valores de las celdas en cada fila
+
+                    if (row.RowType == DataControlRowType.DataRow)
+                    {
+                        string productoId = row.Cells[0].Text; // Obtener el ProductoID de la primera celda
+                        string cantidad = row.Cells[1].Text; // Obtener la Cantidad de la segunda celda
+                        string precioCompra = row.Cells[2].Text; // Obtener el Precio de Compra de la tercera celda
+                        string subtotal = row.Cells[3].Text; // Obtener el Subtotal de la cuarta celda
+
+                        DetalleCompras detallecompra = new DetalleCompras()
+                        {
+                            CompraID = compraId,
+                            ProductoID = int.Parse(productoId),
+                            Cantidad = int.Parse(cantidad),
+                            PrecioCompra = decimal.Parse(precioCompra),
+                            Subtotal = decimal.Parse(subtotal)
+                        };
+                        DetalleCompraBusiness.AgregarDetalleCompra(detallecompra);
+                    }
+                }
+                BorrarGridViewDetallesCompra();
+                InicializarGridViewDetallesCompra();
+                CalcularTotalCompra();
+            }
         }
         private void InicializarGridViewDetallesCompra()
         {
@@ -150,21 +141,48 @@ namespace MiCRM
             gvDetallesCompra.DataSource = detallesCompra;
             gvDetallesCompra.DataBind();
         }
+        private void BorrarGridViewDetallesCompra()
+        {
+            // Borrar el GridView de detalles de la compra
+            List<DetalleCompras> detallesCompra = CompraBusiness.ObtenerDetallesCompra();
+            foreach (GridViewRow row in gvDetallesCompra.Rows)
+            {
+                detallesCompra.RemoveAt(0); //Borramos el row 0 ya que se actualiza este con cada vuelta del foreach
+            }
+            gvDetallesCompra.DataSource = detallesCompra;
+            gvDetallesCompra.DataBind();
+        }
+        private bool GridViewDetallesCompraVacio()
+        {
+            // Comprobar el GridView de detalles de la compra si esta vacio
+            List<DetalleCompras> detallesCompra = CompraBusiness.ObtenerDetallesCompra();
+            foreach (GridViewRow row in gvDetallesCompra.Rows)
+            {
+                return true;
+            }
+            return false;
+        }
         private void CalcularTotalCompra()
         {
             // Calcular y mostrar el total de la compra
             decimal totalCompra = CompraBusiness.CalcularTotalCompra();
             lblTotalCompra.Text = $"Total: {totalCompra:C}";
         }
-
         protected void gvDetallesCompra_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-            // Obtén el índice de la fila que se está eliminando
-            int rowIndex = e.RowIndex;
+            int rowIndex = e.RowIndex; // Obtener el índice de la fila que se está eliminando
 
-            // Accede a los datos de esa fila (por ejemplo, el ID del producto)
-            string productoID = gvDetallesCompra.DataKeys[rowIndex]["ProductoID"].ToString();
+            List<DetalleCompras> detallesCompra = CompraBusiness.ObtenerDetallesCompra();
 
+            // Aquí puedes acceder a los datos asociados a esa fila en tu fuente de datos
+            // Por ejemplo, si tu GridView está vinculado a una lista de objetos llamada 'detallesCompraList':
+            detallesCompra.RemoveAt(rowIndex); // Eliminar el elemento de la lista en el índice específico
+
+            // Volver a enlazar los datos al GridView después de eliminar la fila
+            gvDetallesCompra.DataSource = detallesCompra; // Reasignar la lista modificada como origen de datos
+            gvDetallesCompra.DataBind();
+
+            CalcularTotalCompra();
         }
     }
 }
