@@ -43,3 +43,12 @@ D:\PROGRAMACION\TpFinal\MiCRM\Business\obj\Debug\Business.csproj.CoreCompileInpu
 D:\PROGRAMACION\TpFinal\MiCRM\Business\obj\Debug\Business.csproj.CopyComplete
 D:\PROGRAMACION\TpFinal\MiCRM\Business\obj\Debug\Business.dll
 D:\PROGRAMACION\TpFinal\MiCRM\Business\obj\Debug\Business.pdb
+D:\PROGRAMACION\TpManuFinal\MiCRM\Business\bin\Debug\Business.dll
+D:\PROGRAMACION\TpManuFinal\MiCRM\Business\bin\Debug\Business.pdb
+D:\PROGRAMACION\TpManuFinal\MiCRM\Business\bin\Debug\Dominio.dll
+D:\PROGRAMACION\TpManuFinal\MiCRM\Business\bin\Debug\Dominio.pdb
+D:\PROGRAMACION\TpManuFinal\MiCRM\Business\obj\Debug\Business.csproj.AssemblyReference.cache
+D:\PROGRAMACION\TpManuFinal\MiCRM\Business\obj\Debug\Business.csproj.CoreCompileInputs.cache
+D:\PROGRAMACION\TpManuFinal\MiCRM\Business\obj\Debug\Business.csproj.CopyComplete
+D:\PROGRAMACION\TpManuFinal\MiCRM\Business\obj\Debug\Business.dll
+D:\PROGRAMACION\TpManuFinal\MiCRM\Business\obj\Debug\Business.pdb

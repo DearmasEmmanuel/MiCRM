@@ -38,7 +38,7 @@ namespace MiCRM
         {
             int clienteID = (int)gvClientes.SelectedDataKey.Value;
             Cliente clienteSeleccionado = ClienteBusiness.ObtenerClientePorID(clienteID);
-
+            Session["ClienteSeleccionado"] = clienteSeleccionado;
             fvCliente.DataSource = new List<Cliente> { clienteSeleccionado };
             fvCliente.DataBind();
             gvClientes.Visible = false;
@@ -91,9 +91,61 @@ namespace MiCRM
 
         protected void btnFinalizarVenta_Click(object sender, EventArgs e)
         {
-            // Lógica para finalizar la venta
-            // Puedes implementar esta lógica según tus necesidades
+            Cliente clienteSeleccionado = Session["ClienteSeleccionado"] as Cliente;
+
+            if (clienteSeleccionado != null && GridViewDetallesVentaNoVacio()) // Comprobamos si la grilla de detalles de venta no está vacía
+            {
+                // Crear una nueva venta
+                Venta venta = new Venta
+                {
+                    ClienteID = clienteSeleccionado.ClienteID,
+                    // Otras propiedades de la venta...
+                };
+
+                // Generar la venta en la base de datos
+                int ventaID = VentaBusiness.CargarVenta(venta);
+
+                // Lógica para finalizar la venta
+                foreach (GridViewRow row in gvDetallesVenta.Rows)
+                {
+                    if (row.RowType == DataControlRowType.DataRow)
+                    {
+
+                        string productoId = row.Cells[1].Text; // Obtener el ProductoID de la primera celda
+                        string cantidad = row.Cells[2].Text; // Obtener la Cantidad de la segunda celda
+                        string precioVenta = row.Cells[3].Text; // Obtener el Precio de Compra de la tercera celda
+                        string subtotal = row.Cells[4].Text; // Obtener el Subtotal de la cuarta celda
+
+                        // Crear un nuevo detalle de venta con los datos de la fila
+                        DetalleVentas detalle = new DetalleVentas
+                        {
+                            ProductoID = int.Parse(productoId),
+                            VentaID = ventaID,
+                            PrecioVenta = decimal.Parse(precioVenta),
+                            Cantidad = int.Parse(cantidad),
+                            Subtotal = decimal.Parse(subtotal)
+                        };
+
+
+                        DetalleVentaBusiness.AgregarDetalleVenta(detalle);
+                    }
+                }
+                // Limpiar y actualizar la GridView de detalles de venta
+                BorrarGridViewDetallesVenta();
+                InicializarGridViewDetallesVenta();
+                CalcularTotalVenta();
+            }
         }
+
+            
+
+                
+           
+        protected bool GridViewDetallesVentaNoVacio()
+        {
+            return gvDetallesVenta.Rows.Count > 0;
+        }
+
 
         private void InicializarGridViewDetallesVenta()
         {
@@ -148,7 +200,15 @@ namespace MiCRM
             }
         }
 
+        private void BorrarGridViewDetallesVenta()
+        {
+            // Limpia el GridView de detalles de la venta
+            List<DetalleVentas> detallesVenta = VentaBusiness.ObtenerDetallesVenta();
+            detallesVenta.Clear(); // Borra todos los elementos de la lista
 
+            gvDetallesVenta.DataSource = detallesVenta;
+            gvDetallesVenta.DataBind();
+        }
 
     }
 }

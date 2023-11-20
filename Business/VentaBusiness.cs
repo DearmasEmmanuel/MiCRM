@@ -45,19 +45,20 @@ namespace Business
                 data.Close();
             }
         }
-        public void CargarVenta(Venta venta)
+        public static int CargarVenta(Venta venta)
         {
+            int ventaID;
             AccessData data = new AccessData();
             try
             {
                 // Realiza la inserción de la venta en la base de datos
-                string query = "INSERT INTO Venta (ClienteID, ProductoID, Cantidad, FechaVenta) VALUES (@ClienteID, @ProductoID, @Cantidad, @FechaVenta)";
+                string query = "INSERT INTO Ventas (ClienteID, FechaVenta) VALUES (@ClienteID,  @FechaVenta); SELECT CAST(SCOPE_IDENTITY() AS INT);";
                 data.SetQuery(query);
                 data.AddParameter("@ClienteID", venta.ClienteID);
-                //data.AddParameter("@ProductoID", venta.ProductoID);
-                //data.AddParameter("@Cantidad", venta.Cantidad);
+
                 data.AddParameter("@FechaVenta", DateTime.Now); // Fecha actual
-                data.ExecuteNonQuery();
+                
+                ventaID = Convert.ToInt32(data.ExecuteScalar());
             }
             catch (Exception ex)
             {
@@ -67,6 +68,8 @@ namespace Business
             {
                 data.Close();
             }
+
+            return ventaID;
         }
 
         private static List<DetalleVentas> detallesVenta = new List<DetalleVentas>();

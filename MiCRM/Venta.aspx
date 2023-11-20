@@ -71,10 +71,10 @@
             <Columns>
 
                 <asp:TemplateField HeaderText="Producto">
-                    <ItemTemplate>
-                        <%# ObtenerNombreProducto(Convert.ToInt32(Eval("ProductoID"))) %>
-                    </ItemTemplate>
-                </asp:TemplateField>
+     <ItemTemplate>
+         <%# ObtenerNombreProducto(Convert.ToInt32(Eval("ProductoID"))) %>
+     </ItemTemplate>
+ </asp:TemplateField>
 
 
                 <asp:BoundField DataField="ProductoID" HeaderText="ProductoID" />
