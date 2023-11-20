@@ -85,13 +85,13 @@ namespace Business
             try
             {
                 this.command.Connection = this.connection;
-               this.connection.Open();
-               return this.command.ExecuteNonQuery();
+                this.connection.Open();
+                return this.command.ExecuteNonQuery();
             }
-           catch (Exception)
+            catch (Exception)
             {
                 return -1;
-           }
+            }
         }
 
         public void setearParametros(string nombre, object valor)

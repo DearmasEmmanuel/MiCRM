@@ -88,7 +88,6 @@ namespace Business
             };
 
             // Agregar el detalle a la lista de detalles de compra
-
             detallesCompra.Add(nuevoDetalle);
         }
 

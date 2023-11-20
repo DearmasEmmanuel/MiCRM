@@ -110,6 +110,53 @@ namespace Business
             }
         }
 
+        public static void SumarStockActual(int productoId, int cantidad)
+        {
+            //Buscamos el stock actual del producto
+            int result;
+            result = ProductoBusiness.DevolverStockActual(productoId);
+
+            AccessData data = new AccessData();
+            try
+            {
+                // Realiza la actualización del producto en la base de datos
+                string query = "UPDATE Productos SET StockActual = @StockActual WHERE ProductoID = @ProductoID";
+                data.SetQuery(query);
+                int stockActual = cantidad + result;
+                data.AddParameter("@ProductoID", productoId);
+                data.AddParameter("@StockActual", stockActual);
+                data.ExecuteQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                data.Close();
+            }
+        }
+        public static int DevolverStockActual(int productoId)
+        {
+            AccessData data = new AccessData();
+            try
+            {
+                // Realiza la busqueda de la cantidad de stock actual
+                string query = "SELECT StockActual FROM Productos WHERE ProductoID = @ProductoID";
+                data.SetQuery(query);
+                data.AddParameter("@ProductoID", productoId);
+                object result = data.ExecuteScalar();
+                return (int)result;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                data.Close();
+            }
+        }
         public static void EliminarProducto(int productoID)
         {
             AccessData data = new AccessData();

@@ -73,7 +73,5 @@ namespace Business
                 data.Close();
             }
         }
-    
-        // Agrega las funciones de EditarDetalleVenta y EliminarDetalleVenta si es necesario.
     }
 }

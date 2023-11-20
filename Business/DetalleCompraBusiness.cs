@@ -48,7 +48,6 @@ namespace Business
                 data.Close();
             }
         }
-
         public static void AgregarDetalleCompra(DetalleCompras detalleCompra)
         {
             AccessData data = new AccessData();
@@ -74,7 +73,5 @@ namespace Business
                 data.Close();
             }
         }
-
-        // Puedes agregar funciones adicionales según tus necesidades, como editar o eliminar detalles de compra.
     }
 }

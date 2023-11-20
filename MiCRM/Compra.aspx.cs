@@ -92,7 +92,6 @@ namespace MiCRM
                 proveedor = Convert.ToInt32(lblProveedor.Text);
 
                 // Generamos la compra en la DB
-
                 Compra compra = new Compra()
                 {
                     ProveedorID = proveedor
@@ -121,6 +120,7 @@ namespace MiCRM
                             Subtotal = decimal.Parse(subtotal)
                         };
                         DetalleCompraBusiness.AgregarDetalleCompra(detallecompra);
+                        ProductoBusiness.SumarStockActual(int.Parse(productoId), int.Parse(cantidad));
                     }
                 }
                 BorrarGridViewDetallesCompra();
