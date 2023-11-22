@@ -1,11 +1,11 @@
-﻿using Business;
-using Dominio;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Business;
+using Dominio;
 
 namespace MiCRM
 {
@@ -20,10 +20,6 @@ namespace MiCRM
                 {
                     lblUsuario.Text = Session["NombreUsuario"].ToString();
                 }
-                else
-                {
-
-                }
                 
                 gvStock.DataSource = ProductoBusiness.List();
                 gvStock.DataBind();
@@ -36,11 +32,6 @@ namespace MiCRM
         protected void btnCargarCliente_Click(object sender, EventArgs e)
         {
             Response.Redirect("CargarCliente.aspx");
-        }
-
-        protected void btnRealizarCompra_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

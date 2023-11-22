@@ -20,11 +20,10 @@ namespace MiCRM
                 ddlProductos.DataBind();
 
                 // Inicializar GridView de detalles de la venta
-               
+
                 InicializarGridViewDetallesVenta();
             }
         }
-
         protected void btnBuscarCliente_Click(object sender, EventArgs e)
         {
             string nombreCliente = txtCliente.Text;
@@ -33,7 +32,6 @@ namespace MiCRM
             gvClientes.DataBind();
             gvClientes.Visible = true;
         }
-
         protected void gvClientes_SelectedIndexChanged(object sender, EventArgs e)
         {
             int clienteID = (int)gvClientes.SelectedDataKey.Value;
@@ -44,51 +42,35 @@ namespace MiCRM
             gvClientes.Visible = false;
 
         }
-
-        protected void btnCargarVenta_Click(object sender, EventArgs e)
-        {
-            // Lógica para cargar la venta con el producto seleccionado
-            int productoID = Convert.ToInt32(ddlProductos.SelectedValue);
-            int cantidad = Convert.ToInt32(txtCantidad.Text);
-
-            // Agregar el detalle de la venta
-            VentaBusiness.AgregarDetalleVenta(productoID, cantidad);
-
-            // Actualizar el GridView de detalles de la venta
-            ActualizarGridViewDetallesVenta();
-
-            // Calcular y mostrar el total de la venta
-            CalcularTotalVenta();
-        }
-
         protected void btnAgregarProductos_Click(object sender, EventArgs e)
         {
-            // Obtener los valores seleccionados antes de limpiar los campos
-            int productoID = Convert.ToInt32(ddlProductos.SelectedValue);
-            int cantidad = Convert.ToInt32(txtCantidad.Text);
-
-            // Limpiar los campos después de obtener los valores
-            ddlProductos.SelectedIndex = 0; // Restablecer el DropDownList
-            txtCantidad.Text = string.Empty; // Limpiar el campo de cantidad
-
-            // Validar la cantidad antes de agregar el detalle de la venta
-            if (cantidad > 0)
+            if (!(txtCantidad.Text.Equals("")))
             {
-                // Agregar el detalle de la venta
-                VentaBusiness.AgregarDetalleVenta(productoID, cantidad);
-                ActualizarGridViewDetallesVenta();
-                CalcularTotalVenta();
+                // Obtener los valores seleccionados antes de limpiar los campos
+                int productoID = Convert.ToInt32(ddlProductos.SelectedValue);
+                int cantidad = Convert.ToInt32(txtCantidad.Text);
 
-                // Puedes usar un control de Label o mostrar mensajes de alerta según tu preferencia
-                lblMensaje.Text = "Productos agregados exitosamente.";
-            }
-            else
-            {
-                lblMensaje.Text = "La cantidad debe ser mayor que cero.";
+                // Limpiar los campos después de obtener los valores
+                ddlProductos.SelectedIndex = 0; // Restablecer el DropDownList
+                txtCantidad.Text = string.Empty; // Limpiar el campo de cantidad
+
+                // Validar la cantidad antes de agregar el detalle de la venta
+                if (cantidad > 0)
+                {
+                    // Agregar el detalle de la venta
+                    VentaBusiness.AgregarDetalleVenta(productoID, cantidad);
+                    ActualizarGridViewDetallesVenta();
+                    CalcularTotalVenta();
+
+                    // Puedes usar un control de Label o mostrar mensajes de alerta según tu preferencia
+                    lblMensaje.Text = "Productos agregados exitosamente.";
+                }
+                else
+                {
+                    lblMensaje.Text = "La cantidad debe ser mayor que cero.";
+                }
             }
         }
-
-
         protected void btnFinalizarVenta_Click(object sender, EventArgs e)
         {
             Cliente clienteSeleccionado = Session["ClienteSeleccionado"] as Cliente;
@@ -126,7 +108,6 @@ namespace MiCRM
                             Subtotal = decimal.Parse(subtotal)
                         };
 
-
                         DetalleVentaBusiness.AgregarDetalleVenta(detalle);
                     }
                 }
@@ -136,24 +117,16 @@ namespace MiCRM
                 CalcularTotalVenta();
             }
         }
-
-            
-
-                
-           
         protected bool GridViewDetallesVentaNoVacio()
         {
             return gvDetallesVenta.Rows.Count > 0;
         }
-
-
         private void InicializarGridViewDetallesVenta()
         {
             // Inicializar el GridView de detalles de la venta
             gvDetallesVenta.DataSource = new List<DetalleVentas>();
             gvDetallesVenta.DataBind();
         }
-
         private void ActualizarGridViewDetallesVenta()
         {
             // Actualizar el GridView de detalles de la venta
@@ -161,7 +134,6 @@ namespace MiCRM
             gvDetallesVenta.DataSource = detallesVenta;
             gvDetallesVenta.DataBind();
         }
-
         private void CalcularTotalVenta()
         {
             // Calcular y mostrar el total de la venta
@@ -178,28 +150,18 @@ namespace MiCRM
 
             return !string.IsNullOrEmpty(nombreProducto) ? nombreProducto : "Producto no encontrado";
         }
-
         protected void gvDetallesVenta_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             int productoID = -1;
 
             if (e.RowIndex >= 0 && e.RowIndex < gvDetallesVenta.Rows.Count)
             {
-                
                 productoID = Convert.ToInt32(gvDetallesVenta.DataKeys[e.RowIndex].Values["ProductoID"]);
-
-
-               
                 VentaBusiness.EliminarDetalleVenta(productoID);
-
-                
                 ActualizarGridViewDetallesVenta();
-
-                
                 CalcularTotalVenta();
             }
         }
-
         private void BorrarGridViewDetallesVenta()
         {
             // Limpia el GridView de detalles de la venta
@@ -209,6 +171,5 @@ namespace MiCRM
             gvDetallesVenta.DataSource = detallesVenta;
             gvDetallesVenta.DataBind();
         }
-
     }
 }

@@ -106,10 +106,10 @@ namespace MiCRM
 
                     if (row.RowType == DataControlRowType.DataRow)
                     {
-                        string productoId = row.Cells[0].Text; // Obtener el ProductoID de la primera celda
-                        string cantidad = row.Cells[1].Text; // Obtener la Cantidad de la segunda celda
-                        string precioCompra = row.Cells[2].Text; // Obtener el Precio de Compra de la tercera celda
-                        string subtotal = row.Cells[3].Text; // Obtener el Subtotal de la cuarta celda
+                        string productoId = row.Cells[1].Text; // Obtener el ProductoID de la primera celda
+                        string cantidad = row.Cells[2].Text; // Obtener la Cantidad de la segunda celda
+                        string precioCompra = row.Cells[3].Text; // Obtener el Precio de Compra de la tercera celda
+                        string subtotal = row.Cells[4].Text; // Obtener el Subtotal de la cuarta celda
 
                         DetalleCompras detallecompra = new DetalleCompras()
                         {
@@ -168,6 +168,16 @@ namespace MiCRM
             decimal totalCompra = CompraBusiness.CalcularTotalCompra();
             lblTotalCompra.Text = $"Total: {totalCompra:C}";
         }
+        protected string ObtenerNombreProducto(int productoID)
+        {
+            // Crear una instancia de ProductoBusiness
+            ProductoBusiness productoBusiness = new ProductoBusiness();
+
+            // Lógica para obtener el nombre del producto basándote en su ID
+            string nombreProducto = productoBusiness.ObtenerNombreProducto(productoID);
+
+            return !string.IsNullOrEmpty(nombreProducto) ? nombreProducto : "Producto no encontrado";
+        }
         protected void gvDetallesCompra_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             int rowIndex = e.RowIndex; // Obtener el índice de la fila que se está eliminando
@@ -175,7 +185,6 @@ namespace MiCRM
             List<DetalleCompras> detallesCompra = CompraBusiness.ObtenerDetallesCompra();
 
             // Aquí puedes acceder a los datos asociados a esa fila en tu fuente de datos
-            // Por ejemplo, si tu GridView está vinculado a una lista de objetos llamada 'detallesCompraList':
             detallesCompra.RemoveAt(rowIndex); // Eliminar el elemento de la lista en el índice específico
 
             // Volver a enlazar los datos al GridView después de eliminar la fila

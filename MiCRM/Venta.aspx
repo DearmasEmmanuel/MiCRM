@@ -59,7 +59,6 @@
                 <asp:TextBox ID="txtCantidad" runat="server" CssClass="form-control" TextMode="Number" />
             </div>
             <!-- Botones para cargar la venta -->
-            <asp:Button ID="btnCargarVenta" runat="server" Text="Cargar Venta" OnClick="btnCargarVenta_Click" CssClass="btn btn-primary" />
             <asp:Button ID="btnAgregarProductos" runat="server" Text="Agregar más productos" OnClick="btnAgregarProductos_Click" CssClass="btn btn-success" />
             <asp:Label ID="lblMensaje" runat="server" Text="Label"></asp:Label>
         </div>
@@ -71,21 +70,18 @@
             <Columns>
 
                 <asp:TemplateField HeaderText="Producto">
-     <ItemTemplate>
-         <%# ObtenerNombreProducto(Convert.ToInt32(Eval("ProductoID"))) %>
-     </ItemTemplate>
- </asp:TemplateField>
-
+                    <ItemTemplate>
+                        <%# ObtenerNombreProducto(Convert.ToInt32(Eval("ProductoID"))) %>
+                    </ItemTemplate>
+                </asp:TemplateField>
 
                 <asp:BoundField DataField="ProductoID" HeaderText="ProductoID" />
-
                 <asp:BoundField DataField="Cantidad" HeaderText="Cantidad" />
                 <asp:BoundField DataField="PrecioVenta" HeaderText="Precio Unitario" />
                 <asp:BoundField DataField="Subtotal" HeaderText="Subtotal" />
                 <asp:CommandField ShowDeleteButton="True" DeleteText="Eliminar" />
             </Columns>
         </asp:GridView>
-
 
         <!-- Sección para el total de la venta -->
         <div class="mt-3">

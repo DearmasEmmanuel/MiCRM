@@ -81,17 +81,27 @@
         <!-- GridView para mostrar detalles de la compra -->
         <h3>Detalles de la Compra:</h3>
 
-        <asp:GridView ID="gvDetallesCompra" runat="server" AutoGenerateColumns="False" CssClass="table table-striped" OnRowDeleting="gvDetallesCompra_RowDeleting">
+        <asp:GridView ID="gvDetallesCompra" runat="server" AutoGenerateColumns="False" DataKeyNames="ProductoID" CssClass="table table-striped" OnRowDeleting="gvDetallesCompra_RowDeleting">
             <Columns>
-                <asp:BoundField DataField="ProductoID" HeaderText="Producto" />
+
+                <asp:TemplateField HeaderText="Producto">
+                    <ItemTemplate>
+                        <%# ObtenerNombreProducto(Convert.ToInt32(Eval("ProductoID"))) %>
+                    </ItemTemplate>
+                </asp:TemplateField>
+
+                <asp:BoundField DataField="ProductoID" HeaderText="ProductoID" />
                 <asp:BoundField DataField="Cantidad" HeaderText="Cantidad" />
                 <asp:BoundField DataField="PrecioCompra" HeaderText="Precio Unitario" />
-                <asp:BoundField DataField="Subtotal" HeaderText="Subtotal" />
+                <asp:TemplateField HeaderText="Subtotal">
+                    <ItemTemplate>
+                        <%# Convert.ToDecimal(Eval("Cantidad")) * Convert.ToDecimal(Eval("PrecioCompra")) %>
+                    </ItemTemplate>
+                </asp:TemplateField>
                 <asp:CommandField ShowDeleteButton="True" DeleteText="Eliminar" />
             </Columns>
         </asp:GridView>
 
     </div>
-
 
 </asp:Content>
