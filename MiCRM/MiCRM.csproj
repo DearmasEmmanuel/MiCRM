@@ -73,6 +73,7 @@
     <Content Include="Compra.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="Estilos.css" />
+    <Content Include="InventarioAdmin.aspx" />
     <Content Include="ModificarCliente.aspx" />
     <Content Include="ModificarClienteAdmin.aspx" />
     <Content Include="ModificarMarca.aspx" />
@@ -82,6 +83,7 @@
     <Content Include="Producto.aspx" />
     <Content Include="UsuariosAdmin.aspx" />
     <Content Include="Venta.aspx" />
+    <Content Include="VentaAdmin.aspx" />
     <Content Include="Web.config" />
     <Content Include="Login.aspx" />
     <Content Include="Vendedor.aspx" />
@@ -128,6 +130,13 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InventarioAdmin.aspx.cs">
+      <DependentUpon>InventarioAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InventarioAdmin.aspx.designer.cs">
+      <DependentUpon>InventarioAdmin.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.Master.cs">
       <DependentUpon>Login.Master</DependentUpon>
@@ -227,6 +236,13 @@
     </Compile>
     <Compile Include="Venta.aspx.designer.cs">
       <DependentUpon>Venta.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VentaAdmin.aspx.cs">
+      <DependentUpon>VentaAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VentaAdmin.aspx.designer.cs">
+      <DependentUpon>VentaAdmin.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

@@ -11,7 +11,7 @@ namespace MiCRM
 {
 
 
-    public partial class Ventas
+    public partial class VentaAdmin
     {
 
         /// <summary>

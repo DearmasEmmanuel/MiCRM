@@ -12,6 +12,21 @@
     <link href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <link href="Estilos.css" rel="stylesheet">
 
+    <!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+
+<!-- Popper.js -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+
+<!-- Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
     <style>
         /* Estilo para la barra lateral */
     </style>
@@ -23,19 +38,54 @@
     <form id="form1" runat="server">
         <div>
             <div class="sidebar">
-                <a href="admin.aspx"><i class="fa fa-dashboard"></i> Dashboard</a>
-                <a href="Compra.aspx"><i class="fa fa-shopping-cart"></i> Compras</a>
-                <a href="#"><i class="fa fa-truck"></i> Ventas</a>
-                <a href="CargarClienteAdmin.aspx"><i class="fa fa-users"></i>Clientes Nuevo</a>
-                <a href="ModificarClienteAdmin.aspx"><i class="fa fa-users"></i>Clientes Modificar</a>
-                <a href="NuevaMarca.aspx"><i class="fa fa-cogs"></i>Marca Nueva</a>
-                <a href="ModificarMarca.aspx"><i class="fa fa-cogs"></i>Marca Modificar</a>
-                <a href="NuevoProveedor.aspx"><i class="fa fa-users"></i>Proveedores Nuevo</a>
-                <a href="ModificarProveedor.aspx"><i class="fa fa-users"></i>Proveedores Modificar</a>
-                <a href="UsuariosAdmin.aspx"><i class="fa fa-users"></i>Usuario Nuevo</a>
-                <a href="#"><i class="fa fa-users"></i>Vendedores</a>
-                <a href="#"><i class="fa fa-industry"></i>Inventario</a>
-                <a href="#"><i class="fa fa-cogs"></i>Configuración</a>
+                <a href="admin.aspx"><i class="fa fa-dashboard"></i>Dashboard</a>
+                <a href="Compra.aspx"><i class="fa fa-shopping-cart"></i>Compras</a>
+                <a href="VentaAdmin.aspx"><i class="fa fa-truck"></i>Ventas</a>
+
+                <!-- Desplegable para la sección de Clientes -->
+                <a href="#submenuClientes" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-users"></i>Clientes</a>
+                <ul class="collapse list-unstyled" id="submenuClientes">
+                    <li>
+                        <a href="CargarClienteAdmin.aspx"><i class="fa fa-user-plus"></i>Nuevo</a>
+                    </li>
+                    <li>
+                        <a href="ModificarClienteAdmin.aspx"><i class="fa fa-pencil"></i>Modificar</a>
+                    </li>
+                </ul>
+                <a href="#submenuMarca" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-cogs"></i>Marca</a>
+                <ul class="collapse list-unstyled" id="submenuMarca">
+                    <li>
+                        <a href="NuevaMarca.aspx"><i class="fa fa-plus"></i>Nueva</a>
+                    </li>
+                    <li>
+                        <a href="ModificarMarca.aspx"><i class="fa fa-pencil"></i>Modificar</a>
+                    </li>
+                </ul>
+
+                <!-- Desplegable para la sección de Proveedores -->
+                <a href="#submenuProveedores" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-users"></i>Proveedores</a>
+                <ul class="collapse list-unstyled" id="submenuProveedores">
+                    <li>
+                        <a href="NuevoProveedor.aspx"><i class="fa fa-user-plus"></i>Nuevo</a>
+                    </li>
+                    <li>
+                        <a href="ModificarProveedor.aspx"><i class="fa fa-pencil"></i>Modificar</a>
+                    </li>
+                </ul>
+
+                <!-- Desplegable para la sección de Usuarios -->
+                <a href="#submenuUsuarios" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-users"></i>Usuarios</a>
+                <ul class="collapse list-unstyled" id="submenuUsuarios">
+                    <li>
+                        <a href="UsuariosAdmin.aspx"><i class="fa fa-user-plus"></i>Usuario Nuevo</a>
+                    </li>
+                    <!-- Puedes agregar más elementos para usuarios aquí si es necesario -->
+                </ul>
+
+                <!-- Otros elementos del menú -->
+               <!-- <a href="#"><i class="fa fa-users"></i>Vendedores</a>-->
+                <a href="InventarioAdmin.aspx"><i class="fa fa-industry"></i>Inventario</a>
+                <!--<a href="#"><i class="fa fa-cogs"></i>Configuración</a>-->
                 <a href="Login.aspx"><i class="fa fa-sign-out"></i>Cerrar Sesión</a>
             </div>
             <!-- Enlaces a las bibliotecas Bootstrap y jQuery (opcional) -->

@@ -1,13 +1,15 @@
-﻿using System;
+﻿using Business;
+using Dominio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
+using System.Web.UI;
 using System.Web.UI.WebControls;
-using Business;
-using Dominio;
 
 namespace MiCRM
 {
-    public partial class Ventas : System.Web.UI.Page
+    public partial class VentaAdmin : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -20,11 +22,10 @@ namespace MiCRM
                 ddlProductos.DataBind();
 
                 // Inicializar GridView de detalles de la venta
-               
+
                 InicializarGridViewDetallesVenta();
             }
         }
-
         protected void btnBuscarCliente_Click(object sender, EventArgs e)
         {
             string nombreCliente = txtCliente.Text;
@@ -123,10 +124,10 @@ namespace MiCRM
             }
         }
 
-            
 
-                
-           
+
+
+
         protected bool GridViewDetallesVentaNoVacio()
         {
             return gvDetallesVenta.Rows.Count > 0;
@@ -171,17 +172,17 @@ namespace MiCRM
 
             if (e.RowIndex >= 0 && e.RowIndex < gvDetallesVenta.Rows.Count)
             {
-                
+
                 productoID = Convert.ToInt32(gvDetallesVenta.DataKeys[e.RowIndex].Values["ProductoID"]);
 
 
-               
+
                 VentaBusiness.EliminarDetalleVenta(productoID);
 
-                
+
                 ActualizarGridViewDetallesVenta();
 
-                
+
                 CalcularTotalVenta();
             }
         }

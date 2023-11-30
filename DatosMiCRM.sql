@@ -94,3 +94,30 @@ VALUES
 
 
 
+
+--
+Create TRIGGER TR_modificar_Producto ON DetallesVenta
+AFTER Insert
+AS 
+BEGIN
+	BEGIN TRY
+		BEGIN TRANSACTION 
+		DECLARE @ProductoID BIGINT
+		DECLARE @cantidad INT
+			
+		SELECT @ProductoID = ProductoID, @cantidad = Cantidad FROM inserted
+			
+		UPDATE Productos 
+		SET StockActual = StockActual - @cantidad 
+		WHERE ProductoID = @ProductoID
+
+			
+
+		
+		COMMIT TRANSACTION
+	END TRY
+	BEGIN CATCH
+		ROLLBACK TRANSACTION
+	END CATCH
+END
+

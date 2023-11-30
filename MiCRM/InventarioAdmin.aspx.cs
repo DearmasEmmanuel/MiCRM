@@ -1,5 +1,4 @@
 ﻿using Business;
-using Dominio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +8,7 @@ using System.Web.UI.WebControls;
 
 namespace MiCRM
 {
-    public partial class WebForm2 : System.Web.UI.Page
+    public partial class InventarioAdmin : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -29,7 +28,7 @@ namespace MiCRM
                 ddlCategoria.DataTextField = "Nombre";
                 ddlCategoria.DataBind();
 
-                
+
 
                 // Enlazar los datos al GridView
                 gvStock.DataSource = ProductoBusiness.List();

@@ -15,7 +15,7 @@ namespace Business
             AccessData data = new AccessData();
             try
             {
-                data.SetQuery(@"SELECT CateroriaID, Nombre FROM CATEGORIAS");
+                data.SetQuery(@"SELECT CategoriaID, Nombre FROM CATEGORIAS");
 
 
                 data.ExecuteQuery();

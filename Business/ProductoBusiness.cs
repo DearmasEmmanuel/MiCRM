@@ -144,5 +144,52 @@ namespace Business
             // Devolver el nombre del producto si se encuentra, o un mensaje de error si no se encuentra
             return producto != null ? producto.Nombre : "Producto no encontrado";
         }
+        public static List<Producto> Filter(string nombre, int marcaID, int categoriaID)
+        {
+            List<Producto> productosFiltrados = ObtenerTodosLosProductos(); // Obtener todos los productos
+
+            if (!string.IsNullOrEmpty(nombre))
+            {
+                productosFiltrados = FiltrarPorNombre(productosFiltrados, nombre);
+            }
+
+            if (marcaID != 0)
+            {
+                productosFiltrados = FiltrarPorMarca(productosFiltrados, marcaID);
+            }
+
+            if (categoriaID != 0)
+            {
+                productosFiltrados = FiltrarPorCategoria(productosFiltrados, categoriaID);
+            }
+
+            return productosFiltrados;
+        }
+
+        private static List<Producto> FiltrarPorNombre(List<Producto> productos, string nombre)
+        {
+            return productos.Where(p => p.Nombre.Contains(nombre)).ToList();
+        }
+
+        private static List<Producto> FiltrarPorMarca(List<Producto> productos, int marcaID)
+        {
+            return productos.Where(p => p.Marca.MarcaID == marcaID).ToList();
+        }
+
+        private static List<Producto> FiltrarPorCategoria(List<Producto> productos, int categoriaID)
+        {
+            return productos.Where(p => p.Categoria.CategoriaID == categoriaID).ToList();
+        }
+
+        // Método auxiliar para obtener todos los productos (sustituye esto por tu lógica real)
+        private static List<Producto> ObtenerTodosLosProductos()
+        {
+            // Lógica para obtener todos los productos
+            // Reemplaza esto con tu lógica para obtener la lista de productos
+            List<Producto> todosLosProductos = ProductoBusiness.List();
+            return todosLosProductos;
+        }
+
+
     }
 }
