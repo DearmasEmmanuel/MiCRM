@@ -14,17 +14,7 @@ namespace MiCRM
             if (Session["NombreUsuario"] != null)
             {
                 lblUsuario.Text = Session["NombreUsuario"].ToString();
-
-
             }
-            else
-            {
-
-            }
-
-
-
-
         }
     }
 }

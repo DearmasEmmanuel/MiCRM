@@ -11,6 +11,5 @@ namespace Dominio
         public int CompraID { get; set; }
         public int ProveedorID { get; set; }
         public DateTime FechaCompra { get; set; }
-
     }
 }

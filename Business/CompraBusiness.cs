@@ -70,7 +70,6 @@ namespace Business
         }
 
         private static List<DetalleCompras> detallesCompra = new List<DetalleCompras>();
-
         public static void AgregarDetalleCompra(int productoID, int cantidad)
         {
             // Obtener información del producto desde tu lógica de negocio
@@ -88,32 +87,23 @@ namespace Business
             };
 
             // Agregar el detalle a la lista de detalles de compra
-
             detallesCompra.Add(nuevoDetalle);
         }
-
         public static List<DetalleCompras> ObtenerDetallesCompra()
         {
             return detallesCompra;
         }
-
         public static decimal CalcularTotalCompra()
         {
             decimal totalCompra = 0;
 
             // Calcular el total sumando los subtotales de cada detalle
             foreach (var detalle in detallesCompra)
-            {
-                totalCompra += detalle.PrecioCompra;
+            {               
+                totalCompra += detalle.PrecioCompra * (detalle.Cantidad);
             }
 
             return totalCompra;
         }
-
-
-
-
-
-
     }
 }

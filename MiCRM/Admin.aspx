@@ -10,6 +10,4 @@
      <p>Este es el panel de Administracion de MiCRM.</p>
  </div>
 
-
-
 </asp:Content>

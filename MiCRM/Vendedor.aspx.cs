@@ -1,11 +1,11 @@
-﻿using Business;
-using Dominio;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Business;
+using Dominio;
 
 namespace MiCRM
 {
@@ -20,6 +20,7 @@ namespace MiCRM
                 {
                     lblUsuario.Text = Session["NombreUsuario"].ToString();
                 }
+<<<<<<< HEAD
 
                 ddlMarca.DataSource = MarcaBusiness.List();
                 ddlMarca.DataTextField = "Nombre";
@@ -29,6 +30,8 @@ namespace MiCRM
                 ddlCategoria.DataTextField = "Nombre";
                 ddlCategoria.DataBind();
 
+=======
+>>>>>>> 76fd712ddf891895a11c3d51a6ad0895861acf9d
                 
 
                 // Enlazar los datos al GridView
@@ -41,6 +44,7 @@ namespace MiCRM
         {
             Response.Redirect("CargarCliente.aspx");
         }
+<<<<<<< HEAD
 
         protected void btnRealizarCompra_Click(object sender, EventArgs e)
         {
@@ -107,5 +111,7 @@ namespace MiCRM
         }
 
 
+=======
+>>>>>>> 76fd712ddf891895a11c3d51a6ad0895861acf9d
     }
 }
