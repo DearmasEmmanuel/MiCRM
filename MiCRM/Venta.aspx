@@ -59,10 +59,7 @@
                 <asp:TextBox ID="txtCantidad" runat="server" CssClass="form-control" TextMode="Number" />
             </div>
             <!-- Botones para cargar la venta -->
-<<<<<<< HEAD
-            
-=======
->>>>>>> 76fd712ddf891895a11c3d51a6ad0895861acf9d
+
             <asp:Button ID="btnAgregarProductos" runat="server" Text="Agregar más productos" OnClick="btnAgregarProductos_Click" CssClass="btn btn-success" />
             <asp:Label ID="lblMensaje" runat="server" Text=""></asp:Label>
         </div>

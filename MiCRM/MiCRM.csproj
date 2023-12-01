@@ -70,8 +70,8 @@
     <Content Include="Admin.aspx" />
     <Content Include="CargarCliente.aspx" />
     <Content Include="CargarClienteAdmin.aspx" />
+    <Content Include="CargarProducto.aspx" />
     <Content Include="Compra.aspx" />
-    <Content Include="Default.aspx" />
     <Content Include="Estilos.css" />
     <Content Include="InventarioAdmin.aspx" />
     <Content Include="ModificarCliente.aspx" />
@@ -117,19 +117,19 @@
     <Compile Include="CargarClienteAdmin.aspx.designer.cs">
       <DependentUpon>CargarClienteAdmin.aspx</DependentUpon>
     </Compile>
+    <Compile Include="CargarProducto.aspx.cs">
+      <DependentUpon>CargarProducto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CargarProducto.aspx.designer.cs">
+      <DependentUpon>CargarProducto.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Compra.aspx.cs">
       <DependentUpon>Compra.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Compra.aspx.designer.cs">
       <DependentUpon>Compra.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Default.aspx.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Default.aspx.designer.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="InventarioAdmin.aspx.cs">
       <DependentUpon>InventarioAdmin.aspx</DependentUpon>

@@ -24,6 +24,24 @@ namespace MiCRM
         protected global::System.Web.UI.WebControls.Label lblUsuario;
 
         /// <summary>
+        /// Control txtProductoabuscar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtProductoabuscar;
+
+        /// <summary>
+        /// Control btnBuscarProducto1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnBuscarProducto1;
+
+        /// <summary>
         /// Control txtProducto.
         /// </summary>
         /// <remarks>

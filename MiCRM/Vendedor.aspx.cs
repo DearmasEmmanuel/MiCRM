@@ -20,7 +20,7 @@ namespace MiCRM
                 {
                     lblUsuario.Text = Session["NombreUsuario"].ToString();
                 }
-<<<<<<< HEAD
+
 
                 ddlMarca.DataSource = MarcaBusiness.List();
                 ddlMarca.DataTextField = "Nombre";
@@ -30,13 +30,10 @@ namespace MiCRM
                 ddlCategoria.DataTextField = "Nombre";
                 ddlCategoria.DataBind();
 
-=======
->>>>>>> 76fd712ddf891895a11c3d51a6ad0895861acf9d
-                
 
-                // Enlazar los datos al GridView
-                gvStock.DataSource = ProductoBusiness.List();
-                gvStock.DataBind();
+                ActualizarlaGrilla();
+
+            
             }
         }
 
@@ -44,7 +41,7 @@ namespace MiCRM
         {
             Response.Redirect("CargarCliente.aspx");
         }
-<<<<<<< HEAD
+
 
         protected void btnRealizarCompra_Click(object sender, EventArgs e)
         {
@@ -110,8 +107,17 @@ namespace MiCRM
             gvStock.DataBind();
         }
 
+        protected void btnBuscarProducto_Click1(object sender, EventArgs e)
+        {
 
-=======
->>>>>>> 76fd712ddf891895a11c3d51a6ad0895861acf9d
+        }
+
+        protected void ActualizarlaGrilla()
+        {
+            // Enlazar los datos al GridView
+            gvStock.DataSource = ProductoBusiness.List();
+            gvStock.DataBind();
+
+        }
     }
 }

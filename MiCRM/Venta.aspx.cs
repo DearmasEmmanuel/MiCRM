@@ -42,12 +42,7 @@ namespace MiCRM
             gvClientes.Visible = false;
 
         }
-<<<<<<< HEAD
 
-
-
-=======
->>>>>>> 76fd712ddf891895a11c3d51a6ad0895861acf9d
         protected void btnAgregarProductos_Click(object sender, EventArgs e)
         {
             if (!(txtCantidad.Text.Equals("")))

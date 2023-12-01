@@ -11,7 +11,7 @@ namespace MiCRM
 {
 
 
-    public partial class Default
+    public partial class CargarProducto
     {
     }
 }
